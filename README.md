@@ -1,1 +1,1 @@
-# baekjoon_algorithm
+백준 알고리즘 문제들을 풀이하면서 풀이법들을 기록
