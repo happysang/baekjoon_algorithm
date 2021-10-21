@@ -119,3 +119,13 @@ print(res)
 
 
 
+# 2941번
+import sys
+lis = ["c=", "c-", "dz=", "d-", "lj", "nj", "s=", "z="]
+s = sys.stdin.readline().strip()
+for x in lis:
+    s= s.replace(x,'a')
+print(len(s))
+
+
+
