@@ -129,3 +129,28 @@ print(len(s))
 
 
 
+# 5622번
+from collections import defaultdict
+import sys
+
+d = defaultdict(int)
+count = 0
+sec = 3
+res = 0
+for x in range(65, 91):
+    d[chr(x)] = sec
+    if chr(x) == 'P' or chr(x) == 'W':
+        continue
+    count += 1
+    if count % 3 == 0:
+        sec += 1
+
+s = sys.stdin.readline().strip()
+for x in s:
+    res += d[x]
+
+print(res)
+
+
+
+
