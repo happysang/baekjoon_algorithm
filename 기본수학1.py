@@ -4,10 +4,32 @@ res = int(int(fix)/(int(price)-int(val))+1) if int(price) > int(val) else -1
 print(res)
 
 
+
 # 2292번
+num, count, a = 1,1, int(input())
+while(True):
+    if a <= num:
+        print(count)
+        break
+    num += 6*count
+    count += 1
+
 
 
 # 1193번
+num, count, a = 1,1, int(input())
+while(True):
+    if a <= num:
+        if count%2 == 0:
+            print(f"{a-(num-count)}/{(count+1)-(a-(num-count))}" )
+            break
+        else:
+            print(f"{(count+1)-(a-(num-count))}/{a-(num-count)}" )
+            break
+    
+    count += 1
+    num += count
+
 
 
 # 2869번
