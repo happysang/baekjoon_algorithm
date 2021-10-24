@@ -33,6 +33,13 @@ while(True):
 
 
 # 2869번
+import math
+lis = list(map(int, input().split()))
+date = (lis[2]-lis[0])/(lis[0]-lis[1])
+if date%1 == 0:
+    print(int(date+1))
+else:
+    print(math.ceil(date)+1)
 
 
 # 10250번
