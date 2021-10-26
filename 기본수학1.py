@@ -119,6 +119,8 @@ else:
 
 
 # 10757번
+import sys
+print(sum(list(map(int, sys.stdin.readline().split()))))
 
 
 
