@@ -64,10 +64,57 @@ for x in res:
 
 
 # 2775번
+for _ in range(int(input())):
+    h = int(input())
+    w = int(input())
+
+    r = [[0 for _ in range(w)] for _ in range(h+1)]
+
+    for x in range(1, w+1):
+        r[0][x-1] = x
+
+    for y in range(1, h+1):
+        for x in range(w):
+            if x == 0:
+                r[y][x] = 1
+            else:
+                r[y][x] = r[y][x-1] + r[y-1][x]
+    
+    print(r[h][w-1])
+
+
+# 2775번 - 내가 해결한 재귀풀이 but 시간초과.. 재귀라고 다 좋은게 아니다..
+def find(h, w):
+    count = 0
+    if h == 0:
+        return w
+    else:
+        for x in range(w+1):
+            count += find(h-1,x)
+    return count
+
+for _ in range(int(input())):
+    h = int(input())
+    w = int(input())
 
 
 
 # 2839번
+num = int(input())
+if num ==4 or num == 7:
+    print(-1)
+else:
+    a,b = divmod(num,5)
+    if b == 0:
+        print(a)
+    elif b == 1:
+        print(a-1+2)
+    elif b == 2:
+        print(a-2+4)
+    elif b == 3:
+        print(a+1)
+    elif b == 4:
+        print(a-1+3)
 
 
 
