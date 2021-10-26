@@ -16,6 +16,27 @@ print(count)
 
 
 # 2581번
+import math
+num1 = int(input())
+num2 = int(input())
+res = []
+
+for x in range(num1, num2+1):
+    check = True
+    if x == 1:
+        continue
+    for y in range(2,int(math.sqrt(x))+1):
+        if x % y == 0:
+            check = False
+            break
+    if check:
+        res.append(x)
+if len(res) == 0:
+    print(-1)
+else:
+    print(sum(res))
+    print(res[0])
+
 
 
 
