@@ -42,16 +42,37 @@ else:
     print(math.ceil(date)+1)
 
 
+
 # 10250번
+res = []
+for x in range(int(input())):
+    lis = list(map(int, input().split()))
+    room,num = [], 100
+
+    for _ in range(lis[0]):
+        room.append([idx for idx in range(num+1, num+lis[1]+1)])
+        num += 100
+
+    if lis[2] % lis[0] == 0:
+        res.append(room[lis[0]-1][lis[2]//lis[0]-1])
+    else:
+        res.append(room[lis[2]%lis[0]-1][lis[2]//lis[0]])
+
+for x in res:
+    print(x)
+
 
 
 # 2775번
 
 
+
 # 2839번
 
 
+
 # 10757번
+
 
 
 #1011번
