@@ -62,19 +62,20 @@ from math import sqrt
 a,b = map(int, input().split())
 
 for x in range(a,b+1):
+    flag = True
     if x == 1:
         continue
-    if x == 2:
-        print(2)
+    if x == 2 or x == 3:
+        print(x)
         continue
-    if x == 3:
-        print(3)
-        continue
+
     for y in range(2,int(sqrt(x))+1):
         if x % y == 0:
+            flag = False
             break
-        if y == int(sqrt(x)):
-            print(x)
+    
+    if flag:
+        print(x)
 
 
 # 4948번
