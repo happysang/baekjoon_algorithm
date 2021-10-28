@@ -58,7 +58,23 @@ else:
 
 
 # 1929번
+from math import sqrt
+a,b = map(int, input().split())
 
+for x in range(a,b+1):
+    if x == 1:
+        continue
+    if x == 2:
+        print(2)
+        continue
+    if x == 3:
+        print(3)
+        continue
+    for y in range(2,int(sqrt(x))+1):
+        if x % y == 0:
+            break
+        if y == int(sqrt(x)):
+            print(x)
 
 
 # 4948번
