@@ -41,6 +41,19 @@ else:
 
 
 # 11653번
+num = int(input())
+
+if num == 1:
+    pass
+else:
+    for x in range(2,num+1):
+        if num % x == 0:
+            while True:
+                if num % x == 0:  
+                    print(x)
+                    num = num//x
+                else:
+                    break
 
 
 
