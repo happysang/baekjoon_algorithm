@@ -101,6 +101,30 @@ for x in res:
 
 
 # 9020번
+lis = [True for _ in range(10000+1)]
+for x in range(2,int(10000**0.5)+1):
+    for y in range(2,10000//x+1):
+        lis[x*y] = False
+
+n = set()
+for x in range(2,10001):
+    if lis[x] == True:
+        n.add(x)
+
+for _ in range(int(input())):
+    num = int(input())
+    a, b = 0, 0
+    gap = 10000
+    for x in n:
+        temp = num - x
+        if temp in n:
+            if gap > abs(temp-x):
+                gap = abs(temp-x)
+                if temp >= x:
+                    a,b = x, temp
+                else:
+                    a,b = temp, x
+    print(a,b)
 
 
 
