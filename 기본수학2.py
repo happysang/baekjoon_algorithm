@@ -171,6 +171,17 @@ print(a,b)
 
 
 # 4153번
+while True:
+    nums = list(map(int, input().split()))
+    a = max(nums)
+    if a == 0:
+        break
+    nums.remove(max(nums))
+
+    if a**2 == nums[0]**2 + nums[1]**2:
+        print("right")
+    else:
+        print("wrong")
 
 
 
