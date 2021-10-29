@@ -100,7 +100,7 @@ for x in res:
     
 
 
-# 9020번
+# 9020번 @@@@@중요! 시간이 오래 걸릴 때는 list 말고 set을 활용하자!
 lis = [True for _ in range(10000+1)]
 for x in range(2,int(10000**0.5)+1):
     for y in range(2,10000//x+1):
@@ -129,10 +129,44 @@ for _ in range(int(input())):
 
 
 # 1085번
+x,y,w,h = map(int ,input().split())
+
+if w/2 > x:
+    min_x = x
+else:
+    min_x = w-x
+
+if h/2 > y:
+    min_y = y
+else:
+    min_y = h-y
+
+print(min(min_x, min_y))
+
 
 
 
 # 3009번
+from collections import defaultdict
+
+num = defaultdict(int)
+front = defaultdict(int)
+for x in range(3):
+    a,b = map(int, input().split())
+    front[a] += 1
+    num[a] += 1
+    num[b] += 1
+
+for k,v in front.items():
+    if v == 1:
+        a = k
+        num[a] += 1
+
+for k,v in num.items():
+    if v % 2 ==1:
+        b = k
+
+print(a,b)
 
 
 
