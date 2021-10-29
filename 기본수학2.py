@@ -79,7 +79,25 @@ for x in range(a,b+1):
 
 
 # 4948번
+lis = [True for _ in range(123456*2+1)]
+for x in range(2,int(246912**0.5)):
+    for y in range(2,(123456*2)//x+1):
+        lis[x*y] = False
 
+res = []
+while True:
+    count = 0
+    num = int(input())
+    if num == 0:
+        break
+    for x in range(num+1, 2*num+1):
+        if lis[x] == True:
+            count += 1
+    res.append(count)
+
+for x in res:
+    print(x)
+    
 
 
 # 9020번
