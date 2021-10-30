@@ -186,7 +186,27 @@ while True:
 
 
 # 3053번
+import math
+r = int(input())
+
+s = math.pi * (r ** 2)
+print(round(s,6))
+print(format((r**2)*2,".6f"))
+
 
 
 
 # 1002번
+from math import sqrt
+for x in range(int(input())):
+    lis = list(map(int, input().split()))
+    dis = sqrt((lis[0]-lis[3])**2 + (lis[1]-lis[4])**2)
+
+    if dis == 0 and lis[2]==lis[5]:
+        print(-1)
+    elif abs(lis[2] - lis[5]) < dis < (lis[2] + lis[5]):
+        print(2)
+    elif abs(lis[2] - lis[5]) == dis or (lis[2] + lis[5]) == dis:
+        print(1)
+    else:
+        print(0)
