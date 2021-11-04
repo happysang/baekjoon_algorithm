@@ -28,6 +28,24 @@ print(fibo(int(input())))
 
 
 # 2447번
+def star(l): 
+    if l == 1: 
+        return ['*']
+
+    stars = star(l//3) 
+    res = [] 
+    for x in stars: 
+        res.append(x*3) 
+    for x in stars: 
+        res.append(x+' '*(l//3)+x) 
+    for x in stars: 
+        res.append(x*3)
+    print(res)
+    return res
+    
+    
+n = int(input()) 
+print('\n'.join(star(n)))
 
 
 
