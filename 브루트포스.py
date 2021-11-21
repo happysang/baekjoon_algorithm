@@ -52,7 +52,43 @@ print(check(int(input())))
 
 
 # 7568번
+from collections import defaultdict
+num = int(input())
+nums = defaultdict(int)
+sam = []
 
+for x in range(num):
+    sam.append( list(map(int,input().split())) )
+
+for x in range(len(sam)):
+    nums[str(sam[x])+str(x)] = num
+
+print(nums)
+
+for x in range(len(sam)):
+    flag = -1
+    for y in range(len(sam)):
+        if (sam[x][0] > sam[y][0] and sam[x][1] > sam[y][1]):
+            nums[str(sam[x])+str(x)] -= 1
+            
+        elif (sam[x][0] > sam[y][0] and sam[x][1] < sam[y][1]) or \
+                (sam[x][0] < sam[y][0] and sam[x][1] > sam[y][1]) or \
+                    (sam[x][0] == sam[y][0] and sam[x][1] == sam[y][1]) or \
+                        (sam[x][0] >= sam[y][0] and sam[x][1] > sam[y][1]) or \
+                            (sam[x][0] > sam[y][0] and sam[x][1] >= sam[y][1]):
+            flag += 1
+        
+        
+    if flag >= 1:
+        print("a")
+        nums[str(sam[x])+str(x)] -= flag
+
+print(nums.values())
+res = ''
+for x in list((nums.values())):
+    res += str(x)+" "
+    
+print(res)
 
 
 
