@@ -63,8 +63,6 @@ for x in range(num):
 for x in range(len(sam)):
     nums[str(sam[x])+str(x)] = num
 
-print(nums)
-
 for x in range(len(sam)):
     flag = -1
     for y in range(len(sam)):
@@ -73,23 +71,17 @@ for x in range(len(sam)):
             
         elif (sam[x][0] > sam[y][0] and sam[x][1] < sam[y][1]) or \
                 (sam[x][0] < sam[y][0] and sam[x][1] > sam[y][1]) or \
-                    (sam[x][0] == sam[y][0] and sam[x][1] == sam[y][1]) or \
-                        (sam[x][0] >= sam[y][0] and sam[x][1] > sam[y][1]) or \
-                            (sam[x][0] > sam[y][0] and sam[x][1] >= sam[y][1]):
+                    (sam[x][0] == sam[y][0] or sam[x][1] == sam[y][1]):
             flag += 1
         
-        
     if flag >= 1:
-        print("a")
         nums[str(sam[x])+str(x)] -= flag
-
-print(nums.values())
+        
 res = ''
 for x in list((nums.values())):
     res += str(x)+" "
     
 print(res)
-
 
 
 # 1018번
