@@ -123,3 +123,11 @@ print(min(res))
 
 
 # 1436번
+lis = []
+for x in range(10000000000):
+    if "666" in str(x):
+        lis.append(x)
+    if len(lis) == 10000:
+        break
+        
+print(lis[int(input())-1])
