@@ -85,7 +85,31 @@ print(res)
 
 
 # 1018번
+case1 = [['W','B','W','B','W','B','W','B'], ['B','W','B','W','B','W','B','W'],['W','B','W','B','W','B','W','B'], ['B','W','B','W','B','W','B','W'],
+         ['W','B','W','B','W','B','W','B'], ['B','W','B','W','B','W','B','W'],['W','B','W','B','W','B','W','B'], ['B','W','B','W','B','W','B','W']]
 
+case2 = [['B','W','B','W','B','W','B','W'],['W','B','W','B','W','B','W','B'],['B','W','B','W','B','W','B','W'],['W','B','W','B','W','B','W','B'],
+         ['B','W','B','W','B','W','B','W'],['W','B','W','B','W','B','W','B'],['B','W','B','W','B','W','B','W'],['W','B','W','B','W','B','W','B']]
+
+
+n, m = map(int, input().split())
+data = []
+for x in range(n):
+    s = input()
+    temp = []
+    for y in s:
+        temp.append(y)
+    data.append(temp)
+
+
+nums = []
+for x in range(n-8+1):
+    for y in range(m-8+1):
+        nums.append([x,y])
+        
+print(nums)
+
+for x in 
 
 
 
