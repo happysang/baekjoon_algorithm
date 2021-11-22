@@ -85,8 +85,8 @@ print(res)
 
 
 # 1018번
-case1 = [['W','B','W','B','W','B','W','B'], ['B','W','B','W','B','W','B','W'],['W','B','W','B','W','B','W','B'], ['B','W','B','W','B','W','B','W'],
-         ['W','B','W','B','W','B','W','B'], ['B','W','B','W','B','W','B','W'],['W','B','W','B','W','B','W','B'], ['B','W','B','W','B','W','B','W']]
+case1 = [['W','B','W','B','W','B','W','B'],['B','W','B','W','B','W','B','W'],['W','B','W','B','W','B','W','B'],['B','W','B','W','B','W','B','W'],
+         ['W','B','W','B','W','B','W','B'],['B','W','B','W','B','W','B','W'],['W','B','W','B','W','B','W','B'],['B','W','B','W','B','W','B','W']]
 
 case2 = [['B','W','B','W','B','W','B','W'],['W','B','W','B','W','B','W','B'],['B','W','B','W','B','W','B','W'],['W','B','W','B','W','B','W','B'],
          ['B','W','B','W','B','W','B','W'],['W','B','W','B','W','B','W','B'],['B','W','B','W','B','W','B','W'],['W','B','W','B','W','B','W','B']]
@@ -102,14 +102,23 @@ for x in range(n):
     data.append(temp)
 
 
-nums = []
+def check(x,y):
+    c1 = 0
+    c2 = 0
+    for i in range(x,x+8):
+        for j in range(y,y+8):
+            if data[i][j] != case1[i-x][j-y]:
+                c1 += 1
+            if data[i][j] != case2[i-x][j-y]:
+                c2 += 1
+    return min(c1, c2)
+
+res = []
 for x in range(n-8+1):
     for y in range(m-8+1):
-        nums.append([x,y])
-        
-print(nums)
+        res.append(check(x,y))
 
-for x in 
+print(min(res))
 
 
 
