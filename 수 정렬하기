@@ -42,6 +42,31 @@ for x in range(10001):
 
 
 # 2108번
+import sys
+from collections import defaultdict
+num = int(sys.stdin.readline())
+nums = []
+
+for x in range(num):
+    nums.append(int(sys.stdin.readline()))
+
+print(round(sum(nums)/num))
+print(sorted(nums)[num//2])
+
+dic_nums = defaultdict(int)
+for x in sorted(nums):
+    dic_nums[x]+=1
+temp = []
+for k,v in dic_nums.items():
+    if v == max(list(dic_nums.values())):
+        temp.append(k)
+
+if len(temp) == 1:
+    print(temp[0])
+else:
+    print(temp[1])
+    
+print(max(nums) - min(nums))
 
 
 
