@@ -71,6 +71,10 @@ print(max(nums) - min(nums))
 
 
 # 1427번
+import sys
+
+num = list(sys.stdin.readline().strip())
+print(''.join(reversed(sorted(num))))
 
 
 
