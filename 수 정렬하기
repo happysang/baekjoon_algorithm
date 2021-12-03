@@ -79,7 +79,15 @@ print(''.join(reversed(sorted(num))))
 
 
 # 11650번
-
+import sys
+num = int(sys.stdin.readline().strip())
+lis = []
+for x in range(num):
+    lis.append(list( map(int,sys.stdin.readline().split()) ))
+    
+for x in sorted(lis):
+    print(x[0], x[1])
+    
 
 
 # 11651번
