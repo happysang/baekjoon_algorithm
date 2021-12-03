@@ -91,6 +91,15 @@ for x in sorted(lis):
 
 
 # 11651번
+import sys
+num = int(sys.stdin.readline().strip())
+lis = []
+for x in range(num):
+    temp = list(map(int,sys.stdin.readline().split()))
+    lis.append([temp[1],temp[0]])
+    
+for x in sorted(lis):
+    print(x[1], x[0])
 
 
 
