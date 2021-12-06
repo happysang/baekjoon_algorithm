@@ -133,7 +133,18 @@ for x in res:
 
 
 # 10814번
+import sys
+num = int(sys.stdin.readline())
 
+lis = []
+for x in range(num):
+    n1, n2 = sys.stdin.readline().split()
+    temp = [int(n1), n2, x]
+    lis.append(temp)
+
+for i in sorted(lis, key= lambda x : (x[0], x[2]) ):
+    print(i[0], i[1])
+    
 
 
 # 18870번 
