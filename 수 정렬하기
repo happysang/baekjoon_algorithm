@@ -175,4 +175,4 @@ res = []
 for x in lis:
     res.append(dic[x])
     
-print(res) 
+print(res)
