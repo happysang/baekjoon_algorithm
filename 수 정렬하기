@@ -147,4 +147,32 @@ for i in sorted(lis, key= lambda x : (x[0], x[2]) ):
     
 
 
-# 18870번 
+# 18870번
+import sys
+from collections import defaultdict
+num = int(sys.stdin.readline())
+
+lis = list(map(int, sys.stdin.readline().split()))
+
+s_lis = sorted(lis)
+s_lis.append(1000000001)
+
+count = 0
+for x in range(num):
+    if s_lis[x] != s_lis[x+1]:
+        s_lis[x] = [s_lis[x], count]
+        count += 1
+    else:
+        s_lis[x] = [s_lis[x], count]
+del s_lis[-1]
+
+dic = defaultdict(int)
+for x in s_lis:
+    dic[x[0]] = x[1]
+    
+        
+res = []
+for x in lis:
+    res.append(dic[x])
+    
+print(res) 
