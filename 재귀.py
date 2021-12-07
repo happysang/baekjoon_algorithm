@@ -50,3 +50,20 @@ print('\n'.join(star(n)))
 
 
 # 11729번
+count = 0
+pack = []
+def hanoi(block, start, res, mid):
+    global count, pack
+    if block == 1:
+        count += 1
+        pack.append([start, res])
+        return
+    hanoi(block-1, start, mid, res)
+    count += 1
+    pack.append([start, res])
+    hanoi(block-1, mid, res, start)
+    
+hanoi(int(input()),1,3,2)
+print(count)
+for x in pack:
+    print(x[0], x[1])
