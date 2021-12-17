@@ -15,6 +15,34 @@
 
 
 #9663번
+n = int(input())
+res = 0
+def queen(i, col):
+    global res
+    n = len(col) - 1
+    if (promising(i,col)):
+        if (i == n):
+            res += 1
+        else:
+            for j in range(1, n+1):
+                col[i+1] = j
+                queen(i+1, col)
+
+
+def promising(i,col):
+    k = 1
+    flag = True
+    while (k < i and flag):
+        if (col[i] == col[k]):
+            flag = False
+        if ((abs(col[i] - col[k]) == (i-k))):
+            flag = False
+        k += 1
+    return flag
+
+
+queen(0, [0]*(n+1))
+print(res)
 
 
 
