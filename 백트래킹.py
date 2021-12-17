@@ -39,10 +39,25 @@ check()
 
 
 #15651번
+n,m = list(map(int,input().split()))
+res = []
+
+def check():
+    if len(res) == m:
+        print(' '.join(map(str,res)))
+        return
+    
+    else:
+        for i in range(1,n+1):
+            res.append(i)
+            check()
+            res.pop()
+check()
 
 
 
 #15652번
+
 
 
 
