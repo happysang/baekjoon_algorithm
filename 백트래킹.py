@@ -58,13 +58,11 @@ check()
 
 #15652번
 n,m = list(map(int,input().split()))
-res_list = []
 res = []
 
 def check():
     if len(res) == m:
-        if sorted(res) not in res_list:
-            print(' '.join(map(str,res)))
+        print(' '.join(map(str,res)))
         return
     
     else:
