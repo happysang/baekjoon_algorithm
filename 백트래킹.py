@@ -82,31 +82,31 @@ print(answer[int(input())])
 
 
 # 파이썬으로 시간복잡도를 통과할 수 없음..
-# def check(x):
-#     for i in range(x):
-#         if col[x] == col[i] or abs(col[x] - col[i]) == x - i:
-#             return False
-#     return True
+def check(x):
+    for i in range(x):
+        if col[x] == col[i] or abs(col[x] - col[i]) == x - i:
+            return False
+    return True
         
         
-# def dfs(x):
-#     global res
+def dfs(x):
+    global res
     
-#     if x == n:
-#         res += 1
+    if x == n:
+        res += 1
 
-#     else:
-#         for i in range(n):
-#             col[x] = i
-#             if check(x):
-#                 dfs(x + 1)
+    else:
+        for i in range(n):
+            col[x] = i
+            if check(x):
+                dfs(x + 1)
 
 
-# n = int(input())
-# col = [0] * n
-# res = 0
-# dfs(0)
-# print(res)
+n = int(input())
+col = [0] * n
+res = 0
+dfs(0)
+print(res)
 
 
 
@@ -114,7 +114,37 @@ print(answer[int(input())])
 
 
 
+
 #14888번
+import sys
+
+input = sys.stdin.readline
+n = int(input())
+num = list(map(int, input().split()))
+op = list(map(int, input().split()))
+
+maximum = -1e9
+mininum = 1e9
+
+def dfs (depth, total ,plus, minus, mul, div):
+    global maximum, mininum
+    if depth == n:
+        maximum = max(maximum, total)
+        mininum = min(mininum, total)
+        return
+    
+    if plus:
+        dfs (depth + 1, total + num[depth], plus-1, minus, mul, div)
+    if minus:
+        dfs(depth + 1, total - num[depth], plus, minus - 1, mul, div)
+    if mul:
+        dfs(depth + 1, total * num[depth], plus, minus, mul - 1, div)
+    if div:
+        dfs(depth + 1, int(total / num[depth]), plus, minus, mul, div - 1)
+        
+dfs(1, num[0], op[0], op[1], op[2], op[3])
+print(maximum)
+print(mininum)
 
 
 
