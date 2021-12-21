@@ -149,3 +149,43 @@ print(mininum)
 
 
 #14889번
+num = int(input())
+res = set()
+point = []
+flag = [True]*num
+for i in range(num):
+    point.append(list(map(int, input().split())))
+
+
+def dfs (depth,a,b,numflag,flag):
+    if depth == num//2:
+        print("!!",abs(a-b))
+        res.add(abs(a-b))
+        return
+    if numflag:
+        for i in range(num):
+            for j in range(i,num):
+                if i==j:
+                    continue
+                if flag[i] and flag[j]:
+                    a = point[i][j] + point[j][i]
+                    cflag = flag.copy()
+                    cflag[i],cflag[j] = False,False
+                    print(f'{numflag} i: {i} j: {j} depth: {depth} a: {a} b: {b}')
+                    dfs(depth+1,a,b,False,cflag)
+                
+    else:
+        for i in range(num):
+            for j in range(i,num):
+                if i==j:
+                    continue
+                if flag[i] and flag[j]:
+                    b = point[i][j] + point[j][i]
+                    cflag = flag.copy()
+                    cflag[i],cflag[j] = False,False
+                    print(f'{numflag} i: {i} j: {j} depth: {depth} a: {a} b: {b}')
+                    dfs(depth+1,a,b,True,cflag)
+
+dfs(0,0,0,True,flag)
+print(min(res))
+
