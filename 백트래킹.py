@@ -149,43 +149,30 @@ print(mininum)
 
 
 #14889번
-num = int(input())
-res = set()
-point = []
-flag = [True]*num
-for i in range(num):
-    point.append(list(map(int, input().split())))
+import sys
+from itertools import combinations
 
+gap = sys.maxsize
+n = int(input())
+nums = [list(map(int, input().split())) for _ in range(n)]
+pteam = []
 
-def dfs (depth,a,b,numflag,flag):
-    if depth == num//2:
-        print("!!",abs(a-b))
-        res.add(abs(a-b))
-        return
-    if numflag:
-        for i in range(num):
-            for j in range(i,num):
-                if i==j:
-                    continue
-                if flag[i] and flag[j]:
-                    a = point[i][j] + point[j][i]
-                    cflag = flag.copy()
-                    cflag[i],cflag[j] = False,False
-                    print(f'{numflag} i: {i} j: {j} depth: {depth} a: {a} b: {b}')
-                    dfs(depth+1,a,b,False,cflag)
-                
-    else:
-        for i in range(num):
-            for j in range(i,num):
-                if i==j:
-                    continue
-                if flag[i] and flag[j]:
-                    b = point[i][j] + point[j][i]
-                    cflag = flag.copy()
-                    cflag[i],cflag[j] = False,False
-                    print(f'{numflag} i: {i} j: {j} depth: {depth} a: {a} b: {b}')
-                    dfs(depth+1,a,b,True,cflag)
+for t in list(combinations( [i for i in range(n)], n//2 )):
+    pteam.append(t)
 
-dfs(0,0,0,True,flag)
-print(min(res))
-
+for i in range(len(pteam)//2):
+    team = pteam[i]
+    apoint = 0
+    for j in range(n//2):
+        for k in team:
+            apoint += nums[team[j]][k]
+            
+    team = pteam[-i-1]
+    bpoint = 0
+    for j in range(n//2):
+        for k in team:
+            bpoint += nums[team[j]][k]
+            
+    gap = min(gap, abs(apoint-bpoint))
+    
+print(gap)
