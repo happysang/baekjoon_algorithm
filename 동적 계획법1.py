@@ -54,7 +54,21 @@ for i in inp:
 
 
 # 1932번
+num = int(input())
 
+nums = []
+for x in range(num):
+    nums.append(list(map(int, input().split())))
+
+nums.append(['q'*(num+1)])
+
+def sol(lis,idx,res):
+    if nums[0] == 'q':
+        return res
+    else:
+        if nums[len(lis)][idx]
+
+        
 
 
 # 2579번
