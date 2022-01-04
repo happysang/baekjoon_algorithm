@@ -60,13 +60,16 @@ nums = []
 for x in range(num):
     nums.append(list(map(int, input().split())))
 
-nums.append(['q'*(num+1)])
-
-def sol(lis,idx,res):
-    if nums[0] == 'q':
-        return res
-    else:
-        if nums[len(lis)][idx]
+for i in range(1,num):
+    for j in range(i+1):
+        if j == 0:
+            nums[i][j] += nums[i-1][j]
+        elif j == i:
+            nums[i][j] += nums[i-1][j-1]
+        else:
+            nums[i][j] += max(nums[i-1][j-1], nums[i-1][j])
+            
+print(max(nums[-1]))
 
         
 
