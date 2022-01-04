@@ -50,6 +50,24 @@ for i in inp:
 
 
 # 1149번
+num = int(input())
+
+nums = []
+for x in range(num):
+    nums.append(list(map(int, input().split())))
+    
+for i in range(1,num):
+    temp = []
+    for j in range(3):
+        if j == 0:
+            nums[i][j] += min(nums[i-1][1], nums[i-1][2])
+        elif j ==1:
+            nums[i][j] += min(nums[i-1][0], nums[i-1][2])
+        else:
+            nums[i][j] += min(nums[i-1][0], nums[i-1][1])
+            
+            
+print(min(nums[-1]))
 
 
 
