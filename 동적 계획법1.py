@@ -110,6 +110,26 @@ print(max(nums[-1]))
 
 
 # 11054번
+num = int(input())
+
+nums = list(map(int, input().split()))
+reverse_nums = nums[::-1]
+
+increase = [1] *(num)
+decrease = [1] *(num)
+
+for i in range(num):
+    for j in range(i):
+        if nums[i] > nums[j]:
+            increase[i] = max(increase[i], increase[j]+1)
+        if reverse_nums[i] > reverse_nums[j]:
+            decrease[i] = max(decrease[i], decrease[j]+1)
+    
+res = []
+decrease = decrease[::-1]
+for x in range(num):
+    res.append(increase[x] + decrease[x] - 1)
+print(max(res))
 
 
 
