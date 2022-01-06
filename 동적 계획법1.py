@@ -109,6 +109,20 @@ print(max(nums[-1]))
 
 
 
+# 11503번
+num = int(input())
+nums = list(map(int,input().split()))
+
+res = [1] * num
+for i in range(1,num):
+    for j in range(i):
+        if nums[i] > nums[j]:
+            res[i] = max(res[i], res[j]+1)
+            
+print(max(res))
+
+
+
 # 11054번
 num = int(input())
 
