@@ -1,4 +1,21 @@
 #11047번
+import sys
+num, money = map(int, sys.stdin.readline().split())
+
+nums = []
+for i in range(num):
+    nums.append(int(sys.stdin.readline()))
+
+nums.reverse()
+
+flag = False
+cnt = 0
+for x in nums:
+    cnt += (money//x)
+    money -= (money//x)*x
+    if money == 0:
+        break
+print(cnt)
 
 
 #1931번
