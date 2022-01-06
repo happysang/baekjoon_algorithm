@@ -134,6 +134,22 @@ print(max(res))
 
 
 # 2565번
+num = int(input())
+
+lis = []
+for _ in range(num):
+    lis.append(list(map(int, input().split())))
+
+lis.sort()
+nums = [lis[x][1] for x in range(num)]
+
+res = [1]*num
+for i in range(num):
+    for j in range(i):
+        if nums[i] > nums[j]:
+            res[i] = max(res[j]+1, res[i])
+
+print(num - max(res))
 
 
 
