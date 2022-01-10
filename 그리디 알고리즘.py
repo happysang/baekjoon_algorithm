@@ -52,6 +52,18 @@ print(res)
 
 
 #1541번
+nums = input().split('-')
+
+res = []
+for x in nums:
+    temp = 0
+    s = x.split('+')
+    for i in s:
+        temp += int(i)
+    res.append(temp)
+    
+print(res[0]*2 - sum(res))
+
 
 
 #13305번
