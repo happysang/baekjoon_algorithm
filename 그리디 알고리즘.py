@@ -67,3 +67,17 @@ print(res[0]*2 - sum(res))
 
 
 #13305번
+import sys
+num = int(sys.stdin.readline())
+leng = list(map(int, sys.stdin.readline().split()))
+price = list(map(int, sys.stdin.readline().split()))
+
+leng.append(0)
+res = 0
+minp = price[0]
+for x in range(num):
+    if minp > price[x]:
+        minp = price[x]
+    res += minp * leng[x]
+    
+print(res)
