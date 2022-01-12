@@ -25,7 +25,14 @@ else:
 
 
 #2609번
+a , b = map(int, input().split())
 
+for x in range(min(a,b),0,-1):
+    if a % x == 0 and b % x == 0:
+        print(x)
+        print( (a*b)//x )
+        break
+    
 
 
 #1934번
