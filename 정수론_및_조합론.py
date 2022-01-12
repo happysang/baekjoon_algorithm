@@ -53,7 +53,21 @@ for x in range(num):
 
 
 #3036번
+num = int(input())
+nums = list(map(int, input().split()))
 
+res = []
+for x in nums[1:]:
+    if str(nums[0] / x)[-1] == '0':
+        print(f'{nums[0] // x}/1')
+    else:
+        for k in range(min(nums[0],x),0,-1):
+            if nums[0] % k == 0 and x % k == 0:
+                mm = k
+                break
+            
+        print(f'{nums[0]//k}/{(x//k)}')
+        
 
 
 #11050번
