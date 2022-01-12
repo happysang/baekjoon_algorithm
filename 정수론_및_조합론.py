@@ -36,7 +36,16 @@ for x in range(min(a,b),0,-1):
 
 
 #1934번
+num = int(input())
 
+for x in range(num):
+    a , b = map(int, input().split())
+
+    for x in range(min(a,b),0,-1):
+        if a % x == 0 and b % x == 0:
+            print( (a*b)//x )
+            break
+        
 
 
 #2981번
