@@ -71,6 +71,24 @@ for x in nums[1:]:
 
 
 #11050번
+#풀이 1)
+a,b = map(int, input().split())
+import itertools
+print(len(list(itertools.combinations(range(a), b))))
+
+#풀이 2)
+a,b = map(int, input().split())
+def fibo(num):
+    if num == 1:
+        return 1
+    else:
+        return num * fibo(num-1)
+
+if a == 1 or b == 0 or a == b:
+    print(1)
+
+else:
+    print( fibo(a)//(fibo(a-b) * fibo(b)) )
 
 
 
