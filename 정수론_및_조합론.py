@@ -93,7 +93,20 @@ else:
 
 
 #11051번
+res = [0]*1001
+a,b = map(int, input().split())
 
+if a == 1 or b == 0 or a == b:
+    print(1)
+
+else:    
+    for x in range(1,a+1):
+        if x == 1:
+            res[1] = 1
+        else:
+            res[x] = res[x-1] * x
+    print((res[a]//(res[a-b]*res[b])) % 10007)
+    
 
 
 #1010번
