@@ -134,6 +134,30 @@ for _ in range(num):
 
 
 #1676번
+res = [0]*502
+a = int(input())
+
+if a == 0 or a == 1:
+    print(0)
+
+else:
+    for x in range(1,a+1):
+        if x == 1:
+            res[1] = 1
+        else:
+            res[x] = res[x-1] * x
+
+    cnt = 0
+    ans = str(res[a])     
+    while(True):
+        if ans[-1] == '0':
+            cnt += 1
+            ans = ans[:len(ans)-1]
+        else:
+            break
+
+    print(cnt)
+        
 
 
 
