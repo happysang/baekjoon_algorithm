@@ -93,6 +93,7 @@ else:
 
 
 #11051번
+#풀이1)
 res = [0]*1001
 a,b = map(int, input().split())
 
@@ -106,6 +107,35 @@ else:
         else:
             res[x] = res[x-1] * x
     print((res[a]//(res[a-b]*res[b])) % 10007)
+    
+#풀이2)
+a,b = map(int, input().split())
+
+cnt = 1
+if a == 0 or a == 1 or b == 0 or a == b:
+    print(1)
+else:
+    for x in range(1,a+1):
+        if cnt == 1:
+            aa = 1
+        else:
+            bb = aa * x
+            aa = bb
+        if cnt == a:
+            res1 = bb
+        if cnt == b:
+            if cnt == 1:
+                res2 = 1
+            else:
+                res2 = bb
+        if cnt == a-b:
+            if cnt == 1:
+                res3 = 1
+            else:
+                res3 = bb
+        cnt += 1
+
+    print((res1 // ( res2 * res3)))
     
 
 
