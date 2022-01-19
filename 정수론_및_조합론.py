@@ -159,9 +159,7 @@ for _ in range(num):
 
 
 
-#9375번 해결 xxxxxxxxxxxxxx
-from itertools import combinations
-from functools import reduce
+#9375번
 import sys
 
 num = int(sys.stdin.readline())
@@ -174,22 +172,17 @@ for _ in range(num):
         cate = []
         wear = []
         for _ in range(ca):
-            cloth = list(sys.stdin.readline().split())
-            if cloth[-1] not in cate:
-                cate.append(cloth[-1])
+            w,c = list(sys.stdin.readline().split())
+            if c not in cate:
+                cate.append(c)
                 wear.append(1)
             else:
-                wear[cate.index(cloth[-1])]+=1
+                wear[cate.index(c)]+=1
         
-        res = 0
-        for a in range(1,len(cate)+1):
-            for x in list(combinations(range(len(cate)), a)):
-                x = list(x)
-                if len(x) == 1:
-                    res += wear[x[0]]
-                else:
-                    res += reduce(lambda q,w : q*w, x)
-        print(res)
+        res = 1
+        for i in wear:
+            res *= (i+1)
+        print(res - 1)
 
 
 
