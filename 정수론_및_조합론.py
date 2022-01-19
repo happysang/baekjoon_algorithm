@@ -197,7 +197,6 @@ n,m = map(int, input().split())
 def count_number(n, k):
     count = 0
     while n:
-        print(n)
         n //= k
         count += n
     return count
