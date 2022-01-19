@@ -180,16 +180,15 @@ for _ in range(num):
                 wear.append(1)
             else:
                 wear[cate.index(cloth[-1])]+=1
-                
-                
+        
         res = 0
         for a in range(1,len(cate)+1):
-            for x in list(combinations(cate, a)):
+            for x in list(combinations(range(len(cate)), a)):
                 x = list(x)
                 if len(x) == 1:
-                    res += wear[cate.index(x[0])]
+                    res += wear[x[0]]
                 else:
-                    res += reduce(lambda x,y:wear[cate.index(x)]*wear[cate.index(y)], x)
+                    res += reduce(lambda q,w : q*w, x)
         print(res)
 
 
