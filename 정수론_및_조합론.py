@@ -192,3 +192,28 @@ else:
 
 
 #2004번
+a,b = map(int, input().split())
+
+a5 = 0
+a2 = 0
+for x in str(a):
+    if int(x) % 5 == 0:
+        a5 += 1 
+    if int(x) % 2 == 0:
+        a2 += 1
+ 
+b5 = 0
+b2 = 0
+for x in str(b):
+    if int(x) % 5 == 0:
+        b5 += 1 
+    if int(x) % 2 == 0:
+        b2 += 1
+        
+ab5 = 0
+ab2 = 0
+for x in str(a-b):
+    if int(x) % 5 == 0:
+        ab5 += 1 
+    if int(x) % 2 == 0:
+        ab2 += 1
