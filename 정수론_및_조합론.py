@@ -159,7 +159,38 @@ for _ in range(num):
 
 
 
-#9375번
+#9375번 해결 xxxxxxxxxxxxxx
+from itertools import combinations
+from functools import reduce
+import sys
+
+num = int(sys.stdin.readline())
+
+for _ in range(num):
+    ca = int(sys.stdin.readline())
+    if ca == 0:
+        print(0)
+    else:
+        cate = []
+        wear = []
+        for _ in range(ca):
+            cloth = list(sys.stdin.readline().split())
+            if cloth[-1] not in cate:
+                cate.append(cloth[-1])
+                wear.append(1)
+            else:
+                wear[cate.index(cloth[-1])]+=1
+                
+                
+        res = 0
+        for a in range(1,len(cate)+1):
+            for x in list(combinations(cate, a)):
+                x = list(x)
+                if len(x) == 1:
+                    res += wear[cate.index(x[0])]
+                else:
+                    res += reduce(lambda x,y:wear[cate.index(x)]*wear[cate.index(y)], x)
+        print(res)
 
 
 
