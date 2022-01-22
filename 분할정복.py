@@ -81,6 +81,80 @@ print(sol(num,lis,0))
 
 
 #1780
+num = int(input())
+
+lis = []
+for x in range(num):
+    lis.append(list(map(int, input().split())))
+
+def sol(num,lis):
+    if num==1:
+        res = ""
+        for x in lis:
+            for i in x:
+                if i == -1:
+                    res+="a"
+                elif i == 0:
+                    res+="b"
+                else:
+                    res+="c"
+        return res
+                    
+    else:
+        temp = lis[0][0]
+        flag = True
+        p = False
+        for x in lis:
+            for i in range(len(x)):
+                if temp != x[i]:
+                    p = True
+                    break
+            if p:
+                flag = False
+                break
+                
+        if flag:
+            if temp == -1:
+                return "a"
+            elif temp == 0:
+                return "b"
+            else:
+                return "c"
+        
+        else:
+            lis1,lis2,lis3,lis4,lis5,lis6,lis7,lis8,lis9 = [],[],[],[],[],[],[],[],[]
+                    
+            for x in lis:
+                lis1.append(x[:len(x)//3])
+                lis2.append(x[len(x)//3:(len(x)//3)*2])
+                lis3.append(x[(len(x)//3)*2:])
+            lis7 = lis1[(len(x)//3)*2:]
+            lis4 = lis1[len(x)//3:(len(x)//3)*2]
+            lis1 = lis1[:len(x)//3]
+            lis8 = lis2[(len(x)//3)*2:]
+            lis5 = lis2[len(x)//3:(len(x)//3)*2]
+            lis2 = lis2[:len(x)//3]
+            lis9 = lis3[(len(x)//3)*2:]
+            lis6 = lis3[len(x)//3:(len(x)//3)*2]
+            lis3 = lis3[:len(x)//3]
+            
+            return sol(num//3,lis1)+sol(num//3,lis2)+sol(num//3,lis3)+sol(num//3,lis4)+sol(num//3,lis5)+sol(num//3,lis6)+sol(num//3,lis7)+sol(num//3,lis8)+sol(num//3,lis9)
+
+
+res1, res2, res3 = 0,0,0
+for x in sol(num,lis):
+    if x == "a":
+        res1+=1
+    elif x == "b":
+        res2+=1
+    else:
+        res3+=1
+
+print(res1)
+print(res2)
+print(res3)
+
+
 
 #1629
 
