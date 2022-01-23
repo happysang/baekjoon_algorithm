@@ -5,7 +5,6 @@ import sys
 deq = deque()
 num = int(input())
 
-
 for x in range(num):
     cmd = list(sys.stdin.readline().split())
     
@@ -37,7 +36,6 @@ import sys
 deq = deque()
 num = int(input())
 
-
 for x in range(num):
     cmd = int(sys.stdin.readline())
     if cmd == 0:
@@ -48,7 +46,29 @@ for x in range(num):
 print(sum(list(deq)))
 
 
+
 #9012
+from collections import deque
+import sys
+
+for _ in range(int(input())):
+    deq = deque()
+    flag = True
+    for cmd in sys.stdin.readline().strip():
+        if cmd == "(":
+            deq.append(cmd)
+        else:
+            if len(deq) == 0:
+                flag = False
+                break
+            else:
+                deq.pop()
+    if len(deq) == 0 and flag:
+        print("YES")
+    else:
+        print("NO")
+    
+
 
 
 #4949
