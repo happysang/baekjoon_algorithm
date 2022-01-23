@@ -31,6 +31,21 @@ for x in range(num):
             
 
 #10773
+from collections import deque
+import sys
+
+deq = deque()
+num = int(input())
+
+
+for x in range(num):
+    cmd = int(sys.stdin.readline())
+    if cmd == 0:
+        deq.pop()
+    else:
+        deq.append(cmd)
+
+print(sum(list(deq)))
 
 
 #9012
