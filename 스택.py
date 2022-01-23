@@ -67,12 +67,42 @@ for _ in range(int(input())):
         print("YES")
     else:
         print("NO")
-    
 
 
 
 #4949
+from collections import deque
+import sys
 
+while(True):
+    inp = sys.stdin.readline()
+    if inp[0] == ".":
+        break
+    else:
+        deq = deque()
+        flag = True
+        for cmd in inp:
+            if cmd == "(" or cmd == "[":
+                deq.append(cmd)
+            elif cmd == ")":
+                if len(deq) == 0 or deq[-1] == "[":
+                    flag = False
+                    break
+                if deq[-1] == "(":
+                    deq.pop()
+            elif cmd == "]":
+                if len(deq) == 0 or deq[-1] == "(":
+                    flag = False
+                    break
+                else:
+                    deq.pop()
+                    
+        if len(deq) == 0 and flag:
+            print("yes")
+        else:
+            print("no")
+            
+            
 
 #1874
 
