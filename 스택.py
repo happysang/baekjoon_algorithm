@@ -105,7 +105,41 @@ while(True):
             
 
 #1874
+from collections import deque
+import sys
 
+num = int(sys.stdin.readline())
+stack = deque([0])
+cnt = 1
+res = []
+lis = []
+
+for x in range(num):
+    lis.append(int(sys.stdin.readline()))
+
+
+for tar in lis:
+    if stack[-1] < tar:
+        while(stack[-1] < tar):
+            stack.append(cnt)
+            res.append("+")
+            cnt += 1
+    
+    if stack[-1] == tar:
+        
+        stack.pop()
+        res.append("-")
+            
+    else:
+        while(stack[-1] > tar):
+            if stack.pop() in lis:
+                print("NO")
+                exit()
+            res.append("-")
+
+for x in res:
+    print(x)
+    
 
 
 #17298
