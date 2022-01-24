@@ -109,3 +109,17 @@ while(True):
 
 
 #17298
+from collections import deque
+import sys
+
+num = int(sys.stdin.readline().rstrip())
+lis = list(map(int,sys.stdin.readline().split()))
+stack = deque()
+stack.append(0)
+res = [-1] * num
+
+for x in range(1, num):
+    while(stack and lis[stack[-1]] < lis[x]):
+        res[stack.pop()] = lis[x]
+    stack.append(x)
+print(*res)
