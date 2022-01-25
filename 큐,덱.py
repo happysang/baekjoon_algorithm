@@ -158,3 +158,37 @@ print(res)
 
 
 #5430
+from collections import deque
+import sys
+
+for _ in range(int(input())):
+    cmd = sys.stdin.readline().rstrip()
+    n = int(input())
+    tar = deque(sys.stdin.readline().rstrip()[1:-1].split(','))
+
+    if n == 0:
+        tar = deque()
+
+    flag = True
+    rev = 0
+    for x in cmd:
+        if x == 'R':
+            rev += 1
+        elif x == 'D':
+            if len(tar) < 1:
+                print("error")
+                flag = False
+                break
+            else:
+                if rev % 2 == 1:
+                    tar.pop()
+                else:
+                    tar.popleft()
+                    
+                
+    if flag:
+        if rev % 2 == 0:
+            print("[" + ",".join(tar) + "]")
+        else:
+            tar.reverse()
+            print("[" + ",".join(tar) + "]")
