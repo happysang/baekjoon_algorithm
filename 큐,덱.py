@@ -71,6 +71,26 @@ print("<"+", ".join(lis)+">")
 
 
 #1966
+from collections import deque
+import sys
+
+for _ in range(int(input())):
+    n, k = map(int, sys.stdin.readline().split())
+    que = deque(list(map(int,sys.stdin.readline().split())))
+    idx_que = deque([x for x in range(n)])
+    cnt = 0
+    
+    while(len(que) > 0):
+        if que[0] != max(que):
+            que.append(que.popleft())
+            idx_que.append(idx_que.popleft())
+        else:
+            que.popleft()
+            cnt += 1
+            if k == idx_que.popleft():
+                print(cnt)
+                break
+
 
 
 #10866
