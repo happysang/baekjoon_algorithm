@@ -94,9 +94,67 @@ for _ in range(int(input())):
 
 
 #10866
+from collections import deque
+import sys
+deq = deque()
+
+for x in range(int(sys.stdin.readline())):
+    tar = list(sys.stdin.readline().split())
+    
+    if tar[0] == "push_front":
+        deq.appendleft(tar[1])
+    elif tar[0] == "push_back":
+        deq.append(tar[1])
+    elif tar[0] == "pop_front":
+        if len(deq) == 0:
+            print(-1)
+        else:
+            print(deq.popleft())
+    elif tar[0] == "pop_back":
+        if len(deq) == 0:
+            print(-1)
+        else:
+            print(deq.pop())
+    elif tar[0] == "size":
+        print(len(deq))
+    elif tar[0] == "empty":
+        if len(deq) == 0:
+            print(1)
+        else:
+            print(0)
+    elif tar[0] == "front":
+        if len(deq) == 0:
+            print(-1)
+        else:
+            print(deq[0])
+    elif tar[0] == "back":
+        if len(deq) == 0:
+            print(-1)
+        else:
+            print(deq[-1])
 
 
 #1021
+from collections import deque
+import sys
+
+n , m = map(int, sys.stdin.readline().split())
+lis = list(map(int, sys.stdin.readline().split()))
+deq = deque([x for x in range(1,n+1)])
+
+res = 0
+for x in lis:
+    cnt = 0
+    while(deq[0] != x):
+        deq.append(deq.popleft())
+        cnt+=1
+    if len(deq)/2 < cnt:
+        cnt = len(deq) - cnt
+    res += cnt
+    deq.popleft()
+
+print(res)
+
 
 
 #5430
