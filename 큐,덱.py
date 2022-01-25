@@ -52,6 +52,22 @@ print(que[-1])
 
 
 #11866
+from collections import deque
+import sys
+
+n, k = map(int, sys.stdin.readline().split())
+que = deque([x for x in range(1,n+1)])
+lis = []
+
+
+
+while(len(que) > 1):
+    for _ in range(k-1):
+        que.append(que.popleft())
+    lis.append(str(que.popleft()))
+lis.append(str(que.pop()))
+print("<"+", ".join(lis)+">")
+
 
 
 #1966
