@@ -29,6 +29,36 @@ for x in num_list:
     
     
 #10816
+for x in range(tar_num):
+    flag = False
+    
+    l = 0
+    r = len(lis)-1
+    while(l<r):
+        mid = (l+r)//2
+        print(tar_lis[x], res, lis, mid, l , r)
+
+        if tar_lis[x] < lis[mid]:
+            r = mid
+        elif tar_lis[x] > lis[mid]:
+            l = mid+1
+        else:
+
+            while(True):    
+                if mid == len(lis):
+                    flag = True
+                    break
+                if tar_lis[x] != lis[mid] or mid == len(lis):
+                    flag = True
+                    break
+                del lis[mid]
+                res[x] += 1
+                
+            if(flag):
+                break
+        
+print(res)
+
 #1654
 #2805
 #2110
