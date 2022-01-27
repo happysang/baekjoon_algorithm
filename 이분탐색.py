@@ -33,4 +33,28 @@ for x in num_list:
 #2805
 #2110
 #1300
+
 #12015
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+lis = list(map(int, input().split()))
+res = [0]
+
+for x in lis:
+    if res[-1] < x:
+        res.append(x)
+    else:
+        left = 0
+        right = len(res)
+
+        while left < right:
+            mid = (right+left) // 2
+            if res[mid] < x:
+                left = mid+1
+            else:
+                right = mid
+        res[left] = x
+
+print(len(res)-1)
