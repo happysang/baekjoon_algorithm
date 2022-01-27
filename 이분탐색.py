@@ -29,35 +29,35 @@ for x in num_list:
     
     
 #10816
-for x in range(tar_num):
-    flag = False
-    
+import sys
+num = int(input())
+lis = sorted(list(map(int, sys.stdin.readline().split())))
+tar_num = int(input())
+tar_lis = list(map(int, sys.stdin.readline().split()))
+dic = {}
+
+for x in lis:
+    if x not in dic:
+        dic[x] = 1
+    else:
+        dic[x] += 1
+        
+for x in tar_lis:
+    flag = True
     l = 0
     r = len(lis)-1
-    while(l<r):
+    while(l<=r):
         mid = (l+r)//2
-        print(tar_lis[x], res, lis, mid, l , r)
-
-        if tar_lis[x] < lis[mid]:
-            r = mid
-        elif tar_lis[x] > lis[mid]:
+        if x < lis[mid]:
+            r = mid-1
+        elif x > lis[mid]:
             l = mid+1
-        else:
-
-            while(True):    
-                if mid == len(lis):
-                    flag = True
-                    break
-                if tar_lis[x] != lis[mid] or mid == len(lis):
-                    flag = True
-                    break
-                del lis[mid]
-                res[x] += 1
-                
-            if(flag):
-                break
-        
-print(res)
+        elif x == lis[mid]:
+            print(dic[x], end=" ")
+            flag = False
+            break
+    if flag:
+        print(0, end=" ")
 
 #1654
 #2805
