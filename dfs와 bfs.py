@@ -34,7 +34,33 @@ visit = [0 for i in range(n + 1)]
 bfs(v)
 
 
+
 #2606
+n = int(input())
+v = int(input())
+global cnt
+cnt = 0
+visit = [0 for _ in range(n+1)]
+nums = [[0 for _ in range(n+1)] for _ in range(n+1)]
+
+for _ in range(v):
+    x, y = map(int, input().split())
+    nums[x][y] = 1
+    nums[y][x] = 1
+
+def dfs(v):
+    global cnt
+    visit[v] = 1
+    cnt += 1
+    for i in range(1, n+1):
+        if visit[i] == 0 and nums[v][i] == 1:
+            dfs(i)
+
+dfs(1)
+print(cnt-1)
+
+
+
 #2667
 #1012
 #2178
