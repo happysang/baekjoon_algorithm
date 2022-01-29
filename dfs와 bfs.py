@@ -62,6 +62,49 @@ print(cnt-1)
 
 
 #2667
+###bfs로 풀이
+from collections import deque
+num = int(input())
+nums = []
+
+for x in range(num):
+    nums.append(list(map(int,input())))
+    
+yy = [0,0,1,-1]
+xx = [1,-1,0,0]
+    
+def bfs(nums, y, x):
+    lis = deque()
+    lis.append((y,x))
+    nums[y][x] = 0
+    count = 1
+    
+    while lis:
+        i,j = lis.popleft()
+        for k in range(4):
+            dy = i+yy[k]
+            dx = j+xx[k]
+            if dx < 0 or dx >= num or dy < 0 or dy >= num:
+                continue
+            else:
+                if nums[dy][dx] == 1:
+                    nums[dy][dx] = 0
+                    lis.append((dy,dx))
+                    count += 1        
+    return count
+
+res = []
+for i in range(num):
+    for j in range(num):
+        if nums[i][j] == 1:
+            res.append(bfs(nums, i, j))
+            
+print(len(res))
+for x in sorted(res):
+    print(x)
+
+
+
 #1012
 #2178
 #7576
