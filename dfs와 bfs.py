@@ -102,7 +102,42 @@ for i in range(num):
 print(len(res))
 for x in sorted(res):
     print(x)
+###dfs로 풀이
+num = int(input())
 
+nums = []
+for _ in range(num):
+    nums.append(list(map(int, input())))
+
+yy = [1,-1,0,0]
+xx = [0,0,1,-1]
+global count
+
+def dfs(nums, y, x):
+    global count
+    nums[y][x] = 0
+    for _ in range(num):
+        for t in range(4):
+            ty = y + yy[t]
+            tx = x + xx[t]
+            if ty < 0 or ty >= num or tx < 0 or tx >= num:
+                continue 
+            if nums[ty][tx] == 1:
+                nums[ty][tx] = 0
+                count += 1
+                dfs(nums, ty, tx)
+        return count
+    
+res = []
+for y in range(num):
+    for x in range(num):
+        if nums[y][x] == 1:
+            count = 1
+            res.append(dfs(nums, y, x))
+
+print(len(res))
+for x in sorted(res):
+    print(x)
 
 
 #1012
