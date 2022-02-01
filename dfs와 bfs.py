@@ -141,6 +141,42 @@ for x in sorted(res):
 
 
 #1012
+import sys
+sys.setrecursionlimit(10000000)
+
+case = int(input())
+yy = [0,0,1,-1]
+xx = [1,-1,0,0]
+
+def dfs(y,x):
+    nums[y][x] = 0
+    for _ in range(m):
+        for k in range(4):
+            yyy = y + yy[k]
+            xxx = x + xx[k]
+            if 0 <= yyy < n and 0 <= xxx < m and nums[yyy][xxx] == 1:
+    
+                dfs(yyy,xxx)
+
+for _ in range(case):
+    m, n, k = map(int, input().split())
+    nums = [[0 for _ in range(m)] for _ in range(n)]
+    
+    for _ in range(k):
+        x,y = map(int, input().split())
+        nums[y][x] = 1  
+        
+    cnt = 0
+    for j in range(n):
+        for i in range(m):
+            if nums[j][i] == 1:
+                cnt += 1
+                dfs(j,i)
+                
+    print(cnt)
+    
+    
+    
 #2178
 #7576
 #7569
