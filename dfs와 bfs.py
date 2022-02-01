@@ -222,8 +222,7 @@ for _ in range(case):
 from collections import deque
 n,m = map(int, input().split())
 nums = [['0' for _ in range(m+1)]]
-global cnt
-cnt = 0
+
 for _ in range(n):
     nums.append(list("0"+input()))
 
