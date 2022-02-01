@@ -219,6 +219,36 @@ for _ in range(case):
     
     
 #2178
+from collections import deque
+n,m = map(int, input().split())
+nums = [['0' for _ in range(m+1)]]
+global cnt
+cnt = 0
+for _ in range(n):
+    nums.append(list("0"+input()))
+
+yy = [1,0,-1,0]
+xx = [0,1,0,-1]
+
+nums[1][1] = 1
+lis = deque()
+lis.append((1,1))
+
+while(lis):
+    a,b = lis.popleft()
+    
+    for i in range(4):
+        y = a + yy[i]
+        x = b + xx[i]
+        
+        if 1<=y<n+1 and 1<=x<m+1 and nums[y][x] == '1':
+            lis.append((y,x))
+            nums[y][x] = nums[a][b] + 1
+        
+print(nums[n][m])
+
+
+
 #7576
 #7569
 #1697
