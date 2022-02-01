@@ -141,6 +141,47 @@ for x in sorted(res):
 
 
 #1012
+###bsf로 풀기
+num = int(input())
+
+dx = [0,0,1,-1]
+dy = [-1,1,0,0]
+
+
+from collections import deque
+def bfs(y,x):
+    lis = deque()
+    lis.append((y,x))
+    nums[y][x] = 0
+    while(lis):
+        b , a = lis.popleft()
+        for k in range(4):
+            xx = a + dx[k]
+            yy = b + dy[k]
+            
+            if 0<=xx<m and 0<=yy<n and nums[yy][xx] ==1:
+                nums[yy][xx] = 0
+                lis.append((yy,xx))
+        
+    
+
+for _ in range(num):
+    m, n, k = map(int, input().split())
+    nums = [[0 for _ in range(m)] for _ in range(n)]
+    
+    for _ in range(k):
+        x, y = map(int, input().split())
+        nums[y][x] = 1
+    
+    cnt = 0
+    for y in range(n):
+        for x in range(m):
+            if nums[y][x] == 1:
+                cnt += 1
+                bfs(y,x)
+    print(cnt)
+
+### dfs로 풀기
 import sys
 sys.setrecursionlimit(10000000)
 
