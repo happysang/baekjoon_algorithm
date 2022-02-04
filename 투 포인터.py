@@ -48,6 +48,38 @@ print(*ans)
 
 
 #1806
+####부분합으로 풀이
+import sys
+n,s = map(int, sys.stdin.readline().split())
+nums = list(map(int,sys.stdin.readline().split()))
+
+pref = [0]
+temp = 0
+for x in nums:
+    temp += x
+    pref.append(temp)
+
+start,end = 0,1
+temp = 1000000
+while(start<n):
+    if pref[end]-pref[start] >= s:
+        if end-start != 0:
+            temp = min(temp, end-start)
+        start += 1
+        
+    else:
+        if end == n:
+            break
+        elif end < n:
+            end += 1
+        else:
+            start += 1
+            
+if temp == 1000000:
+    print(0)
+else:
+    print(temp)
+
 
 #1644
 
