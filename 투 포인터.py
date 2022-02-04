@@ -80,6 +80,33 @@ if temp == 1000000:
 else:
     print(temp)
 
+###투포인터 풀이
+import sys
+n,s = map(int, sys.stdin.readline().split())
+nums = list(map(int,sys.stdin.readline().split()))
+if s == 0:
+    print(1)
+    exit()
+start, end, cur = 0,0,0
+ans = 1000001
+while (True):
+    print(start, end, cur)
+    if cur >= s:
+        ans = min(ans, end-start)
+        cur -= nums[start]
+        start += 1
+    else:
+        if end == n:
+            break
+        cur += nums[end]
+        end += 1
+    
+if ans == 1000001:
+    print(0)
+else:
+    print(ans)
+    
+    
 
 #1644
 
