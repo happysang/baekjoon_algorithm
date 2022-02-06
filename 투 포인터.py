@@ -109,5 +109,42 @@ else:
     
 
 #1644
+import math
+
+num = int(input())
+nums = [True] * (num+1)
+for i in range(2, int(math.sqrt(num))+1):
+    if nums[i] == True:
+        j = 2
+        while(i*j) <= num:
+            nums[i*j] = False
+            j += 1
+
+numss = []
+for x in range(2,len(nums)):
+    if nums[x]:
+        numss.append(x)
+
+res,temp = 0,0
+start, end = 0,0
+while(True):
+    if temp < num:
+        if end >= (len(numss)):
+            break
+        temp += numss[end]
+        end += 1
+    elif temp > num:
+        temp -= numss[start]
+        start += 1
+    else:
+        res += 1
+        if end >= (len(numss)):
+            break
+        temp += numss[end]
+        end += 1
+    
+print(res)
+
+
 
 #1450
