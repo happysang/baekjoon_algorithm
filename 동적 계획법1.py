@@ -80,7 +80,32 @@ else:
 
 
 # 9461번
+import sys
+num = int(input())
 
+case = []
+for x in range(num):
+    case.append(int(sys.stdin.readline()))
+    
+tar = max(case)
+
+
+if tar == 1:
+    print(1)
+elif tar == 2:
+    print(1)
+elif tar == 3:
+    print(1)
+else:
+    res = [0] * (tar+1)
+    res[1] = 1
+    res[2] = 1
+    res[3] = 1
+    for i in range(4,tar+1):
+        res[i] = res[i-2] + res[i-3]
+        
+for x in case:
+    print(res[x])
 
 
 # 1149번
