@@ -63,7 +63,20 @@ while(True):
 
 
 # 1904번
+num = int(input())
+res = [0]*1000001
 
+if num == 1:
+    print(1)
+elif num == 2:
+    print(2)
+else:
+    res[1] = 1
+    res[2] = 2
+    
+    for i in range(3,num+1):
+        res[i] = (res[i-1]+res[i-2]) % 15746
+    print(res[num])
 
 
 # 9461번
