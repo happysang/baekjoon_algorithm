@@ -93,7 +93,29 @@ print(max(nums[-1]))
 
 
 # 2579번
+import sys
+num = int(input())
 
+up = []
+res = []
+for _ in range(num):
+    up.append(int(sys.stdin.readline()))
+    
+if num == 1:
+    print(up[0])
+elif num == 2:
+    print(up[0] + up[1])
+elif num == 3:
+    print(max( up[0]+up[2] , up[1]+up[2] ))
+else:
+    res.append(up[0])
+    res.append(up[0] + up[1])
+    res.append(max( up[0]+up[2] , up[1]+up[2] ))
+
+    for i in range(3,num):
+        res.append(max( res[i-2]+up[i], res[i-3] + up[i-1] +up[i] ))
+        
+    print(res.pop())
 
 
 
