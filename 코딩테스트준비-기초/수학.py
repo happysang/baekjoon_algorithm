@@ -38,10 +38,17 @@ else:
     
 
 # 17427번 - 약수의 합2
-
+n = int(input())
+res = 0
+for k in range(1,n+1):
+    res += (n//k) * k
+print(res)
 
 
 # 17425번 - 약수의 합
+
+
+
 # 2609번 - 최대공약수와 최소공배수
 def GCD(x, y):
     while(y):
