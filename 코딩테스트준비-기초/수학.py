@@ -43,6 +43,18 @@ else:
 
 # 17425번 - 약수의 합
 # 2609번 - 최대공약수와 최소공배수
+def GCD(x, y):
+    while(y):
+        x, y = y, x%y
+    return x
+
+def LCM(x, y):
+    return (x*y) // GCD(x,y)
+
+import sys
+x, y = map(int, sys.stdin.readline().split())
+print(GCD(x,y))
+print(LCM(x,y))
 # 1978번 - 소수 찾기
 # 1929번 - 소수 구하기
 # 6588번 - 골드바흐의 추측
