@@ -45,8 +45,26 @@ for k in range(1,n+1):
 print(res)
 
 
-# 17425번 - 약수의 합
+# 17425번 - 약수의 합 -> 시간 초과로 인해 pypy3로 해결
+import sys
+n = 1000000
 
+nums = [1]*(n+1)
+res  = [0]*(n+1)
+
+for i in range(2,n+1):
+    j = 1
+    while i*j <= n:
+        nums[i*j] += i 
+        j += 1
+        
+for i in range(1, n+1):
+    res[i] += res[i-1] + nums[i]
+    
+
+c = int(sys.stdin.readline())
+for _ in range(c):
+    print(res[int(sys.stdin.readline())])
 
 
 # 2609번 - 최대공약수와 최소공배수
@@ -62,6 +80,9 @@ import sys
 x, y = map(int, sys.stdin.readline().split())
 print(GCD(x,y))
 print(LCM(x,y))
+
+
+
 # 1978번 - 소수 찾기
 # 1929번 - 소수 구하기
 # 6588번 - 골드바흐의 추측
