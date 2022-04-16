@@ -84,5 +84,72 @@ print(LCM(x,y))
 
 
 # 1978번 - 소수 찾기
+import sys
+MAX = 1000
+
+nums = [0] * (MAX+1)
+nums[1] = 1
+
+for i in range(2,MAX//2+1):
+    t = i
+    while(t <= MAX):
+        if nums[t] == 0 and i!=t:
+            nums[t] +=1
+        t += i
+
+N = int(sys.stdin.readline())
+n = list(map(int, sys.stdin.readline().split()))
+
+cnt = 0
+for i in n:
+    if nums[i] == 0:
+        cnt += 1
+print(cnt) 
+
+
 # 1929번 - 소수 구하기
+import sys
+MAX = 1000000
+
+nums = [0] * (MAX+1)
+nums[1] = 1
+
+for i in range(2,MAX//2+1):
+    t = i
+    while(t <= MAX):
+        if nums[t] == 0 and i!=t:
+            nums[t] +=1
+        t += i
+
+a,b = map(int,sys.stdin.readline().split())
+
+for i in range(a,b+1):
+    if not nums[i]:
+        print(i)
+        
+
 # 6588번 - 골드바흐의 추측
+import sys
+MAX = 1000000
+nums = [0] * (MAX+1)
+nums[1] = 1
+for i in range(2,MAX//2+1):
+    t = i
+    while(t <= MAX):
+        if nums[t] == 0 and i!=t:
+            nums[t] +=1
+        t += i
+
+while (True):
+    flag = True
+    tar = int(sys.stdin.readline())
+    if tar == 0:
+        break
+    for i in range(tar-1, 1, -1):
+        if nums[i] == 0:
+            if nums[tar-i] == 0:
+                flag = False
+                print(f"{tar} = {tar-i} + {i}")
+                break
+    if flag:
+        print("Goldbach's conjecture is wrong.")
