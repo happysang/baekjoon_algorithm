@@ -26,6 +26,18 @@ for i in nums:
 
 
 # 1476번 - 날짜 계산
+import sys
+e,s,m = map(int, sys.stdin.readline().split())
+year = 0
+
+while(True):
+    if year % 15 + 1 == e and year % 28 + 1 == s and year % 19 + 1 == m:
+        print(year+1)
+        break
+    else:
+        year += 1
+
+
 # 1107번 - 리모컨
 # 14500번 - 테트로미노
 # 6064번 - 카잉 달력
