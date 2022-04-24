@@ -39,7 +39,34 @@ while(True):
 
 
 # 1107번 - 리모컨
+
+
 # 14500번 - 테트로미노
+
+
+
 # 6064번 - 카잉 달력
+
+
 # 1748번 - 수 이어 쓰기 1
+import sys
+n = sys.stdin.readline().strip()
+num = int(n)
+
+res = 0
+for i in range(len(n)):
+    k = 9 * (10**i) * (i+1)
+    res += k
+    if i==len(n)-1:
+        res -= k
+        if i != 0:
+            temp = num - ((10**i)-1)
+        else:
+            temp = num
+        res += temp*(i+1)
+        
+print(res)
+
+
+
 # 9095번 - 1, 2, 3 더하기
