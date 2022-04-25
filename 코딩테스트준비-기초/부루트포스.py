@@ -22,7 +22,116 @@ for i in nums:
 
 
 # 3085번 - 사탕 게임
+import sys
 
+n = int(sys.stdin.readline())
+candy = []
+
+for _ in range(n):
+    candy.append(list(sys.stdin.readline().strip()))
+
+
+def sol():
+    m = -1
+    
+    for i in range(n):
+        for j in range(n):
+             
+            c1, c2, c3, c4, c5, c5_1, c6, c6_1, c7, c7_1, c8, c8_1 = -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+            c1 = count1(candy,i,j)
+            c2 = count2(candy,i,j)
+    
+            if i == n-1 and j == n-1:
+                break
+            
+            elif i == n-1:
+                if candy[i][j] != candy[i][j+1]:
+                    candy[i][j+1],candy[i][j] = candy[i][j],candy[i][j+1]
+                    c3 = count1(candy,i,j)
+                    c4 = count2(candy,i,j)
+                    candy[i][j+1],candy[i][j] = candy[i][j],candy[i][j+1]
+            
+            
+            elif j == n-1:
+                if candy[i][j] != candy[i+1][j]:
+                    candy[i+1][j], candy[i][j] = candy[i][j], candy[i+1][j]
+                    c3 = count1(candy,i,j)
+                    c4 = count2(candy,i,j)
+                    candy[i+1][j], candy[i][j] = candy[i][j], candy[i+1][j]
+                    
+                    
+            else:
+                if candy[i][j] != candy[i][j+1]:
+                    candy[i][j+1],candy[i][j] = candy[i][j],candy[i][j+1]
+                    c5 = count1(candy,i,j)
+                    c6 = count2(candy,i,j)
+                    c5_1 = count1(candy,i+1,j)
+                    c6_1 = count2(candy,i,j+1)
+                    candy[i][j+1],candy[i][j] = candy[i][j],candy[i][j+1]
+                    
+                if candy[i][j] != candy[i+1][j]:
+                    candy[i+1][j], candy[i][j] = candy[i][j], candy[i+1][j]
+                    c7 = count1(candy,i,j)
+                    c8 = count2(candy,i,j)
+                    c7_1 = count1(candy,i+1,j)
+                    c8_1 = count2(candy,i,j+1)
+                    candy[i+1][j], candy[i][j] = candy[i][j], candy[i+1][j]
+            
+            m = max(m, c1, c2, c3, c4, c5, c6, c7, c8, c5_1, c6_1, c7_1, c8_1 )
+            
+            if m == n:
+                print(n)
+                exit()
+    return m
+            
+def count1(candy,i,j):
+    cnt1 = 0
+    ii = i
+    jj = j
+    while(jj>0):
+        if candy[ii][jj] == candy[ii][jj-1]:
+            cnt1 += 1
+            jj -= 1
+        else:
+            break
+    
+    cnt2 = 0
+    ii = i
+    jj = j
+    while(jj<n-1):
+        if candy[ii][jj] == candy[ii][jj+1]:
+            cnt2 += 1
+            jj += 1
+        else:
+            break
+    return cnt1 + cnt2 + 1
+
+def count2(candy,i,j):
+    ii = i
+    jj = j
+    cnt1 = 0
+    while(ii>0):
+        if candy[ii][jj] == candy[ii-1][jj]:
+            cnt1 += 1
+            ii -= 1
+        else:
+            break
+    
+    ii = i
+    jj = j
+    cnt2 = 0
+    while(ii<n-1):
+        if candy[ii][jj] == candy[ii+1][jj]:
+            cnt2 += 1
+            ii += 1
+        else:
+            break
+    return cnt1 + cnt2 + 1
+
+if sol() == -1:
+    print(1)
+else:
+    print(sol())
 
 
 # 1476번 - 날짜 계산
@@ -39,6 +148,7 @@ while(True):
 
 
 # 1107번 - 리모컨
+
 
 
 # 14500번 - 테트로미노
@@ -70,3 +180,17 @@ print(res)
 
 
 # 9095번 - 1, 2, 3 더하기
+def sol(n):
+    if n == 1:
+        return 1
+    elif n == 2:
+        return 2
+    elif n == 3:
+        return 4
+    else:
+        return sol(n-3)+sol(n-2)+sol(n-1)
+
+t = int(input())
+
+for _ in range(t):
+    print(sol(int(input())))
