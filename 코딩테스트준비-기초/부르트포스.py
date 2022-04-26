@@ -156,6 +156,23 @@ while(True):
 
 
 # 6064번 - 카잉 달력
+import sys
+
+t = int(sys.stdin.readline())
+
+for _ in range(t):
+    M, N, x, y = map(int,sys.stdin.readline().split())
+    flag = True
+    while x <= M*N:
+        if (x-y) % N == 0:
+            print(x)
+            flag =False
+            break
+        else:
+            x += M
+    
+    if flag:
+        print(-1)
 
 
 # 1748번 - 수 이어 쓰기 1
