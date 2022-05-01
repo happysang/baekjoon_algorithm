@@ -72,6 +72,78 @@ print(res[0])
 
 
 # 14889번 - 스타트와 링크
+import sys,itertools
+input = sys.stdin.readline
+
+n = int(input())
+nums = []
+
+for _ in range(n):
+    nums.append(list(map(int,input().split())))
+
+team = list(itertools.combinations([i for i in range(n)], n//2))
+
+gap = 101
+for i in range(len(team)//2):
+    
+    team1 = 0
+    for j in team[i]:
+        for k in team[i]:
+            team1 += nums[j][k]
+            
+    team2 = 0
+    for j in team[-1-i]:
+        for k in team[-1-i]:
+            team2 += nums[j][k]
+            
+    gap = min(gap, abs(team1-team2))
+    
+    if gap == 0:
+        print(0)
+        exit()
+    
+print(gap)
+
+
+
 # 15661번 - 링크와 스타트
 # 2529번 - 부등호
+import sys, copy
+
+input = sys.stdin.readline
+n = int(input())
+cal = list(input().split())
+ans = []
+
+def sol(res):
+    if len(res) == n+1:
+        temp = copy.deepcopy(res)
+        ans.append(temp)
+        return
+        
+    if len(res) == 0:
+        for i in range(10):
+            res.append(i)
+            sol(res)
+            res.pop()
+    else:
+        for i in range(10):
+            if cal[len(res)-1] == '>':
+                if res[-1] > i and i not in res:
+                    res.append(i)
+                    sol(res)
+                    res.pop()
+            else:
+                if res[-1] < i and i not in res:
+                    res.append(i)
+                    sol(res)
+                    res.pop()
+                    
+sol([])
+
+print(''.join(map(str,ans[-1])))
+print(''.join(map(str,ans[0])))
+
+
+
 # 1248번 - 맞춰봐
