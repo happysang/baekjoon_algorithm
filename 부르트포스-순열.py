@@ -73,7 +73,67 @@ print(m)
 
 
 # 10971번 - 외판원 순회 2
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+nums = []
+for i in range(n):
+    nums.append( list(map(int,input().split())) )
+mini = 100000001
+
+def sol(s,ans,res):
+    global mini
+    if ans >= mini:
+        return
+    
+    if len(res) == n:
+        if nums[res[-1]][res[0]]:
+            ans += nums[res[-1]][res[0]]
+        else:
+            return
+        mini = min (mini, ans)
+        ans -= nums[res[-1]][res[0]]
+        return
+
+    else:            
+        for i in range(n):
+            if i not in res:
+                if nums[s][i] == 0:
+                    return
+                else:
+                    res.append(i)
+                    ans += nums[s][i]
+                    sol(i,ans,res)
+                    res.pop()
+                    ans -= nums[s][i]
+            else:
+                continue    
+            
+for s in range(n):
+    sol(s,0,[s])
+    
+print(mini)
+
+
 # 6603번 - 로또
+import sys, itertools
+input = sys.stdin.readline
+
+
+while(True):
+    cas = list(map(int,input().split()))
+    if cas[0] == 0:
+        break
+    nums = list(itertools.combinations(cas[1:],6))
+    
+    for c in nums:
+        print(*c)
+        
+    print()
+
+
+
 # 브루트 포스 - 비트마스크
 # 11723번 - 집합
 # 1182번 - 부분수열의 합
