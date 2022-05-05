@@ -1,3 +1,30 @@
+## 순열과 조합 구현
+
+def permutation(tar,r,res):
+    if r == 0:
+        print(res)
+    else:
+        for i in tar:
+            if res.count(i) == 0:
+                res.append(i)
+                permutation(tar, r-1, res)
+                res.remove(i)
+# permutation([순열을 구하고 싶은 리스트],뽑을 갯수,[])
+
+
+
+def combination(tar, r, res):
+    if r == 0:
+        print(res[1:])
+    else:
+        for i in tar:
+            if res.count(i) == 0 and i > max(res):
+                res.append(i)
+                combination(tar, r-1, res)
+                res.remove(i)
+#combination([조합을 구하고 싶은 리스트],뽑을 갯수,[0])
+
+
 # 2309번 - 일곱 난쟁이
 import sys
 
