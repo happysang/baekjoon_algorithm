@@ -24,8 +24,44 @@ else:
 
 
 # 11726번 - 2×n 타일링
+n = int(input())
+res = [0] * 1001
+
+res[1] = 1
+res[2] = 2 
+
+for i in range(3,n+1):
+    res[i] = res[i-1] + res[i-2]
+        
+print(res[n] % 10007)
+
+
 # 11727번 - 2×n 타일링 2
+n = int(input())
+res = [0] * 1001
+
+res[1] = 1
+res[2] = 3
+
+for i in range(3,n+1):
+    res[i] = res[i-1] + res[i-2]*2
+    
+print(res[n] % 10007)
+
+
 # 9095번 - 1, 2, 3 더하기
+nums = [0] * 11
+nums[1],nums[2],nums[3] = 1,2,4
+for i in range(4,11):
+    nums[i] = nums[i-3] + nums[i-2] + nums[i-1]
+    
+t = int(input())
+for _ in range(t):
+    tar = int(input())
+    print(nums[tar])
+    
+    
+    
 # 11052번 - 카드 구매하기
 # 16194번 - 카드 구매하기 2
 # 15990번 - 1, 2, 3 더하기 5
