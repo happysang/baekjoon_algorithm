@@ -63,9 +63,82 @@ for _ in range(t):
     
     
 # 11052번 - 카드 구매하기
+n = int(input())
+nums = [0] + list(map(int,input().split()))
+res = [0] *(n+1)
+
+
+res[1] = nums[1]
+for i in range(2,n+1):
+    for j in range(i+1):
+        if res[i] < res[i-j]+nums[j]:
+            res[i] = res[i-j]+nums[j]
+            
+            
+print(res[-1])
+
+
+
 # 16194번 - 카드 구매하기 2
+n = int(input())
+nums = [0]+list(map(int,input().split()))
+res = [0] + [10001] * (n)
+
+res[1] = nums[1]
+for i in range(2,n+1):
+    for j in range(i+1):
+        if res[i] > res[i-j] + nums[j]:
+            res[i] = res[i-j] + nums[j]
+            
+print(res[-1])
+
+
+
 # 15990번 - 1, 2, 3 더하기 5
+t = int(input())
+
+nums = []
+for _ in range(t):
+    nums.append(int(input()))
+    
+res = [[0 for _ in range(3)] for _ in range(max(nums)+1)]
+
+res[1] = [1,0,0]
+res[2] = [0,1,0]
+res[3] = [1,1,1]
+
+for i in range(4, max(nums)+1):
+    res[i][0] = res[i-1][1] % 1000000009 + res[i-1][2] % 1000000009
+    res[i][1] = res[i-2][0] % 1000000009 + res[i-2][2] % 1000000009
+    res[i][2] = res[i-3][0] % 1000000009 + res[i-3][1] % 1000000009
+    
+
+for k in nums:
+    print(sum(res[k])% 1000000009)
+    
+    
+    
 # 10844번 - 쉬운 계단 수
+n = int(input())
+
+res = [[0 for _ in range(10)] for _ in range(n+1)]
+
+res[1] = [0,1,1,1,1,1,1,1,1,1]
+
+
+for i in range(2,n+1):
+    for j in range(10):
+        if j == 0:
+            res[i][j] = res[i-1][1] % 1000000000
+        elif j == 9:
+            res[i][j] = res[i-1][8] % 1000000000
+        else:
+            res[i][j] = (res[i-1][j-1]) % 1000000000 + (res[i-1][j+1]) % 1000000000
+            
+print(sum(res[-1]) % 1000000000)
+
+
+
 # 2193번 - 이친수
 # 11053번 - 가장 긴 증가하는 부분 수열
 # 14002번 - 가장 긴 증가하는 부분 수열 4
