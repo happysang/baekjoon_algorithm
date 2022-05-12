@@ -140,6 +140,20 @@ print(sum(res[-1]) % 1000000000)
 
 
 # 2193번 - 이친수
+n = int(input())
+res = [[0,0] for _ in range(n+1)]
+res[1] = [0,1]
+
+
+for i in range(2, n+1):
+    res[i][0] = res[i-1][0] + res[i-1][1]
+    res[i][1] = res[i-1][0]
+    
+    
+print(sum(res[-1]))
+
+
+
 # 11053번 - 가장 긴 증가하는 부분 수열
 # 14002번 - 가장 긴 증가하는 부분 수열 4
 # 1912번 - 연속합
