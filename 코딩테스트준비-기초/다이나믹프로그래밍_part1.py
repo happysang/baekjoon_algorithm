@@ -155,6 +155,18 @@ print(sum(res[-1]))
 
 
 # 11053번 - 가장 긴 증가하는 부분 수열
+n = int(input())
+nums = [0] + list(map(int,input().split()))
+res = [0] + [1 for _ in range(n)]
+
+for i in range(2,n+1):
+    for j in range(1,i+1):
+        if nums[i] > nums[j]:
+            res[i] = max(res[i], res[j]+1)
+
+print(max(res))
+
+
 # 14002번 - 가장 긴 증가하는 부분 수열 4
 # 1912번 - 연속합
 # 1699번 - 제곱수의 합
