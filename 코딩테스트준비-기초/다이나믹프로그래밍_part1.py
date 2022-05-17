@@ -168,7 +168,63 @@ print(max(res))
 
 
 # 14002번 - 가장 긴 증가하는 부분 수열 4
+n = int(input())
+nums = [0] + list(map(int,input().split()))
+res = [1 for _ in range(n+1)]
+
+for i in range(1,n+1):
+    for j in range(1,i+1):
+        if nums[j] < nums[i]:
+            res[i] = max(res[i], res[j]+1)
+
+ans = max(res)
+ans2 = []
+for i in range(n,0,-1):
+    if res[i] == ans:
+        ans2.append(nums[i])
+        ans -= 1
+
+print(max(res))   
+print(*reversed(ans2))
+
+
+
 # 1912번 - 연속합
+n = int(input())
+
+nums = list(map(int, input().split()))
+res = [0] * len(nums)
+res[0] = nums[0]
+
+for i in range(1,n):
+    res[i] = max (nums[i], res[i-1]+nums[i])
+    
+print(max(res))
+
+
+
 # 1699번 - 제곱수의 합
+n = int(input())
+
+tar = [i * i for i in range(1, 317)]
+res = [0 for i in range(n+1)]
+
+for i in range(1, n+1):
+    
+    if i in tar:
+        res[i] = 1
+        continue
+    else:
+        temp = []
+        for j in tar:
+            if j > i:
+                break
+            else:
+                temp.append(res[j]+res[i-j])
+        res[i] = min(temp)
+print(res[-1])
+
+
+
 # 14501번 - 퇴사
 # 2225번 - 합분해
