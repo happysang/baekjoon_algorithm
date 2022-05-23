@@ -227,4 +227,26 @@ print(res[-1])
 
 
 # 14501번 - 퇴사
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+days = []
+money = []
+
+for _ in range(n):
+    d, m = map(int, input().split())
+    days.append(d)
+    money.append(m)
+
+res = [0]*(n+1)
+
+for i in range(n-1, -1, -1):
+    if i + days[i] > n:
+        res[i] = res[i+1]
+    else:
+        res[i] = max( res[i+1], res[i+days[i]]+money[i] )
+    
+    print(res)
+
 # 2225번 - 합분해
