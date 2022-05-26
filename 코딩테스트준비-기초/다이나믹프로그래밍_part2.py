@@ -37,10 +37,36 @@ print(min(res[-1]))
 
 
 # 1309번 - 동물원
+n = int(input())
+ans = [[0] * 3 for i in range(100001)]
+ans[1] = [1,1,1]
+
+for i in range(2, 100001):
+    ans[i][0] = ans[i - 1][1] % 9901 + ans[i - 1][2] % 9901
+    ans[i][1] = ans[i - 1][0] % 9901 + ans[i - 1][2] % 9901
+    ans[i][2] = ans[i - 1][0] % 9901 + ans[i - 1][1] + ans[i - 1][2] % 9901
+
+print(sum(ans[n]) % 9901)
 
 
 
 # 11057번 - 오르막 수
+n = int(input())
+ans = [[0,0,0,0,0,0,0,0,0,0] for _ in range(n+1)]
+
+ans[1] = [1,1,1,1,1,1,1,1,1,1]
+
+for i in range(2,n+1):
+    temp = 0
+    for j in range(10):
+        for k in range(10):
+            if k >= j:
+                ans[i][k] += ans[i-1][j] % 10007
+
+print(sum(ans[-1]) % 10007)
+
+
+
 # 2156번 - 포도주 시식
 # 1932번 - 정수 삼각형
 # 11055번 - 가장 큰 증가 부분 수열
