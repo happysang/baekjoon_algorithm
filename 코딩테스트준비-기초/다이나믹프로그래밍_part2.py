@@ -69,6 +69,23 @@ print(sum(ans[-1]) % 10007)
 
 # 2156번 - 포도주 시식
 # 1932번 - 정수 삼각형
+n = int(input())
+nums = []
+
+for i in range(n):
+    nums.append(list(map(int,input().split())))
+nums.reverse()
+
+res = nums[0]
+for i in range(1,n):
+    for j in range(len(nums[i])):
+        nums[i][j] += max(res[j], res[j+1])
+    res = nums[i]
+    
+print(*nums[-1])
+
+
+
 # 11055번 - 가장 큰 증가 부분 수열
 # 11722번 - 가장 긴 감소하는 부분 수열
 # 11054번 - 가장 긴 바이토닉 부분 수열
