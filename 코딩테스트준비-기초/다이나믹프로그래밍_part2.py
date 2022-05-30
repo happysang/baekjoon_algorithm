@@ -87,7 +87,59 @@ print(*nums[-1])
 
 
 # 11055번 - 가장 큰 증가 부분 수열
+import copy
+n = int(input())
+nums = list(map(int,input().split()))
+res = copy.deepcopy(nums)
+
+for i in range(1,len(nums)):
+    for j in range(i):
+        if nums[i] > nums[j]:
+            res[i] = max( res[i] , res[j]+nums[i] )
+
+print(max(res))
+
+
+
 # 11722번 - 가장 긴 감소하는 부분 수열
+n = int(input())
+nums = list(map(int,input().split()))
+res = [1] * n
+
+for i in range(1,len(nums)):
+    for j in range(i):
+        if nums[i] < nums[j]:
+            res[i] = max( res[i] , res[j]+1 )
+
+print(max(res))
+
+
+
 # 11054번 - 가장 긴 바이토닉 부분 수열
+n = int(input())
+nums = list(map(int,input().split()))
+res1 = [1] * n
+res2 = [1] * n
+
+for i in range(1,len(nums)):
+    for j in range(i):
+        if nums[i] > nums[j]:
+            res1[i] = max( res1[i] , res1[j]+1 )
+
+nums.reverse()
+for i in range(1,len(nums)):
+    for j in range(i):
+        if nums[i] > nums[j]:
+            res2[i] = max( res2[i] , res2[j]+1 )
+res2.reverse()
+
+ans = 0
+for i in range(len(res1)):
+    ans = max(ans, res1[i]+res2[i]-1)
+    
+print(ans)
+
+
+
 # 13398번 - 연속합 2
 # 2133번 - 타일 채우기
