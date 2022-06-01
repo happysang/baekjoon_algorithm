@@ -96,6 +96,38 @@ for _ in range(n):
             
             
 # 13023번 - ABCDE
+import sys
+
+def dfs(v,cnt):
+    visit[v] = 1
+    cnt += 1
+    if cnt >= 5:
+        print(1)
+        exit()
+    
+    for i in points[v]:
+        if visit[i] == 0:
+            dfs(i,cnt)
+            visit[i] = 0
+
+n,m = map(int, input().split())
+points = [[]for _ in range(n)]
+visit = [0]*n
+
+
+for _ in range(m):
+    i,j = map(int, sys.stdin.readline().split())
+    points[i].append(j)
+    points[j].append(i)
+    
+for i in range(n):
+    dfs(i,0)
+    visit[i] = 0
+
+print(0)
+
+
+
 # 1260번 - DFS와 BFS
 # 11724번 - 연결 요소의 개수
 # 1707번 - 이분 그래프
