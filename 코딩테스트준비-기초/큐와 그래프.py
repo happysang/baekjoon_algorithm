@@ -210,6 +210,41 @@ print(cnt)
 
 # 1707번 - 이분 그래프
 # 2667번 - 단지번호붙이기
+t = 0
+def dfs(i,j):
+    global t
+    t += 1
+    points[i][j] = 0
+    if i != n-1 and points[i+1][j] == 1:
+        dfs(i+1, j)
+    if j != n-1 and points[i][j+1] == 1:
+        dfs(i,j+1)
+    if i != 0 and points[i-1][j] == 1:
+        dfs(i-1, j)
+    if j != 0 and points[i][j-1] == 1:
+        dfs(i,j-1)
+        
+points = []
+n = int(input())
+for i in range(n):
+    points.append(list(map(int,input())))
+    
+cnt = 0
+ans = []
+for i in range(n):
+    for j in range(n):
+        t = 0
+        if points[i][j] == 1:
+            cnt += 1
+            dfs(i,j)
+            ans.append(t)
+            
+print(cnt)
+for i in sorted(ans):
+    print(i)
+    
+    
+    
 # 2178번 - 미로 탐색
 # 7576번 - 토마토
 # 7562번 - 나이트의 이동
