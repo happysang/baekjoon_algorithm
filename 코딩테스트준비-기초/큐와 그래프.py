@@ -246,5 +246,102 @@ for i in sorted(ans):
     
     
 # 2178번 - 미로 탐색
+from collections import deque
+
+def bfs(a,b):
+    lis = deque([[a,b]])
+    while(lis):
+        temp = lis.popleft()
+        i,j = temp[0], temp[1]
+        
+        if i<n-1 and nums[i+1][j] == 1:
+            nums[i+1][j] = nums[i][j]+1
+            lis.append([i+1,j])
+            
+        if j<m-1 and nums[i][j+1] == 1:
+            nums[i][j+1] = nums[i][j]+1
+            lis.append([i,j+1])
+        
+        if i>0 and nums[i-1][j] == 1:
+            nums[i-1][j] = nums[i][j]+1
+            lis.append([i-1,j])
+            
+        if j>0 and nums[i][j-1] == 1:
+            nums[i][j-1] = nums[i][j]+1
+            lis.append([i,j-1])    
+    
+    
+n,m = map(int, input().split())
+
+nums = []
+for _ in range(n):
+    nums.append(list(map(int,input())))
+
+bfs(0,0)
+print(nums[-1][-1])
+
+
+
 # 7576번 - 토마토
+from collections import deque
+
+def bfs(fruit):
+    lis = deque(fruit)
+    
+    while(lis):
+        temp = lis.popleft()
+        i,j = temp[0], temp[1]
+        
+        if i<n-1 and nums[i+1][j] == 0:
+            nums[i+1][j] = nums[i][j]+1
+            lis.append([i+1,j])
+            
+        if j<m-1 and nums[i][j+1] == 0:
+            nums[i][j+1] = nums[i][j]+1
+            lis.append([i,j+1])
+        
+        if i>0 and nums[i-1][j] == 0:
+            nums[i-1][j] = nums[i][j]+1
+            lis.append([i-1,j])
+            
+        if j>0 and nums[i][j-1] == 0:
+            nums[i][j-1] = nums[i][j]+1
+            lis.append([i,j-1])    
+            
+    
+m,n = map(int, input().split())
+
+
+nums = []
+for i in range(n):
+    nums.append(list(map(int,input().split())))
+
+
+fruit = []
+flag = True
+for i in range(n):
+    for j in range(m):
+        if nums[i][j] == 1:
+            fruit.append([i,j])
+        if nums[i][j] == 0:
+            flag = False
+
+
+if flag:
+    print(0)
+elif len(fruit) == 0:
+    print(-1)
+else:
+    bfs(fruit)
+    mmm = 0
+    for x in nums:
+        if 0 in x:
+            print(-1)
+            exit()
+        else:
+            mmm = max(mmm, max(x))
+    print(mmm-1)
+    
+    
+    
 # 7562번 - 나이트의 이동
