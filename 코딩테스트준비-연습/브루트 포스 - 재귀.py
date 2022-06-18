@@ -32,6 +32,28 @@ print(cnt)
 
 
 # 14225번 - 부분수열의 합
+from itertools import combinations
+
+n = int(input())
+nums = list(map(int, input().split()))
+
+
+res = []
+for i in range(1,n+1):
+    temp = list(map(sum,combinations(nums,i)))
+    res += temp
+    
+res = sorted(list(set(res)))
+
+for i in range(len(res)):
+    if res[i] == i+1:
+        continue
+    else:
+        print(i+1)
+        exit()
+
+print(res[-1]+1)
+
 # 14888번 - 연산자 끼워넣기
 # 15658번 - 연산자 끼워넣기 (2)
 # 14500번 - 테트로미노
