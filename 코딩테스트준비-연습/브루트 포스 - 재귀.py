@@ -54,8 +54,66 @@ for i in range(len(res)):
 
 print(res[-1]+1)
 
+
 # 14888번 - 연산자 끼워넣기
+n = int(input())
+nums = list(map(int, input().split()))
+pl, mi, mu, di = map(int, input().split())
+
+ans = []
+def sol (deep, res, pl, mi, mu, di):
+    if deep == n:
+        ans.append(res)
+        return
+    if pl:
+        sol(deep+1, res+nums[deep],pl-1,mi,mu,di)
+    if mi:
+        sol(deep+1, res-nums[deep],pl,mi-1,mu,di)
+    if mu:
+        sol(deep+1, res*nums[deep],pl,mi,mu-1,di)
+    if di:
+        if res >=0:
+            sol(deep+1, res//nums[deep],pl,mi,mu,di-1)
+        else:
+            sol(deep+1, -(abs(res)//nums[deep]),pl,mi,mu,di-1)
+            
+            
+sol(1,nums[0],pl,mi,mu,di)
+
+print(max(ans))
+print(min(ans))
+
+
+
 # 15658번 - 연산자 끼워넣기 (2)
+n = int(input())
+nums = list(map(int, input().split()))
+pl, mi, mu, di = map(int, input().split())
+
+ans = []
+def sol (deep, res, pl, mi, mu, di):
+    if deep == n:
+        ans.append(res)
+        return
+    if pl:
+        sol(deep+1, res+nums[deep],pl-1,mi,mu,di)
+    if mi:
+        sol(deep+1, res-nums[deep],pl,mi-1,mu,di)
+    if mu:
+        sol(deep+1, res*nums[deep],pl,mi,mu-1,di)
+    if di:
+        if res >=0:
+            sol(deep+1, res//nums[deep],pl,mi,mu,di-1)
+        else:
+            sol(deep+1, -(abs(res)//nums[deep]),pl,mi,mu,di-1)
+            
+            
+sol(1,nums[0],pl,mi,mu,di)
+
+print(max(ans))
+print(min(ans))
+
+
 # 14500번 - 테트로미노
 # 16197번 - 두 동전
 # 16198번 - 에너지 모으기
