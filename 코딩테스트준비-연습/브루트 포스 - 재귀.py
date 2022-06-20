@@ -114,7 +114,88 @@ print(max(ans))
 print(min(ans))
 
 
-# 14500번 - 테트로미노
+# 14500번 - 테트로미노 -> 시간복잡도 문제로 pypy로 제출함
+n,m = map(int, input().split())
+
+nums = [[0 for _ in range(m+2)]]
+for _ in range(n):
+    nums.append([0]+list(map(int, input().split()))+[0])
+nums.append([0 for _ in range(m+2)])
+
+
+visit = [[0 for _ in range(m+2)]]
+for _ in range(n):
+    visit.append([0]+[True for _ in range(m)]+[0])
+visit.append([0 for _ in range(m+2)])
+
+
+ans = []
+tempi, tempj = 0,0
+def sol(deep,i,j,res):
+    global tempi, tempj
+    
+    if deep == 2:
+        tempi, tempj = i,j
+        
+    if deep == 3:
+        sol2(deep,tempi,tempj,res)
+        
+    if deep == 4:
+        ans.append(res)
+        return
+        
+    
+    if visit[i][j+1] and nums[i][j+1] != 0:
+        visit[i][j+1] = False
+        sol(deep+1,i,j+1,res+nums[i][j+1])
+        visit[i][j+1] = True
+        
+    if visit[i][j-1] and nums[i][j-1] != 0:
+        visit[i][j-1] = False
+        sol(deep+1,i,j-1,res+nums[i][j-1])
+        visit[i][j-1] = True
+        
+    if visit[i+1][j] and nums[i+1][j] != 0:
+        visit[i+1][j] = False
+        sol(deep+1,i+1,j,res+nums[i+1][j])
+        visit[i+1][j] = True
+        
+    if visit[i-1][j] and nums[i-1][j] != 0:
+        visit[i-1][j] = False
+        sol(deep+1,i-1,j,res+nums[i-1][j])
+        visit[i-1][j] = True
+
+
+def sol2(deep,i,j,res):
+    if visit[i][j+1] and nums[i][j+1] != 0:
+        visit[i][j+1] = False
+        sol(deep+1,i,j+1,res+nums[i][j+1])
+        visit[i][j+1] = True
+        
+    if visit[i][j-1] and nums[i][j-1] != 0:
+        visit[i][j-1] = False
+        sol(deep+1,i,j-1,res+nums[i][j-1])
+        visit[i][j-1] = True
+        
+    if visit[i+1][j] and nums[i+1][j] != 0:
+        visit[i+1][j] = False
+        sol(deep+1,i+1,j,res+nums[i+1][j])
+        visit[i+1][j] = True
+        
+    if visit[i-1][j] and nums[i-1][j] != 0:
+        visit[i-1][j] = False
+        sol(deep+1,i-1,j,res+nums[i-1][j])
+        visit[i-1][j] = True
+
+for i in range(1,n+1):
+    for j in range(1,m+1):
+        visit[i][j] = False
+        sol(1,i,j,nums[i][j])
+        visit[i][j] = True
+        
+print(max(ans))
+
+
 # 16197번 - 두 동전
 # 16198번 - 에너지 모으기
 # 9663번 - N-Queen
