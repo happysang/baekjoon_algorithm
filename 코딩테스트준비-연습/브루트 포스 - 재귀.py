@@ -198,6 +198,23 @@ print(max(ans))
 
 # 16197번 - 두 동전
 # 16198번 - 에너지 모으기
+n = int(input())
+nums = list(map(int, input().split()))
+
+ans = []
+def sol(lis,res):
+    if len(lis) == 2:
+        ans.append(res)
+        return
+
+    for i in range(1,len(lis)-1):
+        sol(lis[:i]+lis[i+1:], res+(lis[i-1]*lis[i+1])) 
+           
+
+sol(nums,0)
+print(max(ans))
+
+
 # 9663번 - N-Queen
 # 2580번 - 스도쿠
 # 4574번 - 스도미노쿠
