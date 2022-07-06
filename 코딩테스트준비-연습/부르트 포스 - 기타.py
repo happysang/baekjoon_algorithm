@@ -47,5 +47,51 @@ else:
 
 
 # 1644번 - 소수의 연속합
+n = int(input())
+if n == 1:
+    print(0)
+    exit()
+
+nums = [True for _ in range(n+1)]
+nums[0] = False
+nums[1] = False
+
+for i in range(2, int(n**0.5)+1):
+    if nums[i]:
+        t = 2
+        
+    while i*t < n+1:
+        nums[i*t] = False
+        t += 1
+        
+pn = []
+for i in range(n+1):
+    if nums[i]:
+        pn.append(i)
+        
+
+l,r,res = 0,0,0
+tar = pn[l]
+
+while(l<=r):
+    if tar == n:
+        res += 1
+        tar -= pn[l]
+        l+=1
+        
+    elif tar > n:
+        tar -= pn[l]
+        l+= 1
+        
+    elif tar < n:
+        r+=1
+        if r<len(pn):
+            tar += pn[r]
+        else:
+            break
+        
+print(res)
+
+
 # 1208번 - 부분수열의 합 2
 # 2143번 - 두 배열의 합
