@@ -69,11 +69,39 @@ for i in range(n):
     print(tar[0][1], end=" ")
 
 
+
+
 # 15번-2750
+n = int(input())
+nums = []
+
+for _ in range(n):
+    nums.append(int(input()))
+    
+for i in range(1,n):
+    for j in range(i,0,-1):
+        if nums[j-1] > nums[j]:
+            nums[j], nums[j-1] = nums[j-1], nums[j]
+            
+for t in nums:
+    print(t)
 
 
 
-# 23번-11724
+
+# 23번-11724 푸는중
+n,m = map(int,input().split())
+
+points = [[0 for _ in range(n+1)] for _ in range(n+1)]
+
+for _ in range(m):
+    a,b = map(int,input().split())
+    points[a][b] = 1
+    points[b][a] = 1
+    
+for i in range(n):
+    print(points[i])
+
 # 26번-1206
 # 29번-1920
 # 36번-1541
