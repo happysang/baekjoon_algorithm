@@ -90,19 +90,105 @@ for t in nums:
 
 
 # 23번-11724 푸는중
-n,m = map(int,input().split())
 
-points = [[0 for _ in range(n+1)] for _ in range(n+1)]
+### i) dfs로 풀이
+import sys
+sys.setrecursionlimit(10**9)
+
+def dfs(v):
+    visit[v] = 1
+    for n in nums[v]:
+        if visit[n] == 0:
+            dfs(n)
+    
+cnt = 0
+n,m = map(int, input().split())
+nums = [[] for _ in range(n+1)]
+visit = [0 for _ in range(n+1)]
 
 for _ in range(m):
-    a,b = map(int,input().split())
-    points[a][b] = 1
-    points[b][a] = 1
+    a,b = map(int, sys.stdin.readline().split())
+    nums[a].append(b)
+    nums[b].append(a)
     
-for i in range(n):
-    print(points[i])
+for i in range(1,n+1):
+    if visit[i] == 0:
+        cnt += 1
+        dfs(i)
 
-# 26번-1206
+print(cnt)
+
+
+### ii) bfs로 풀이
+import sys
+from collections import deque
+
+n,m = map(int, input().split())
+points = [[] for _ in range(n+1)]
+visit = [0 for _ in range(n+1)]
+
+for _ in range(m):
+    i,j = map(int, sys.stdin.readline().split())
+    points[i].append(j)
+    points[j].append(i)
+    
+cnt = 0
+for v in range(1,n+1):
+    if visit[v] == 0:
+        cnt += 1
+        lis = deque([v])
+        while(lis):
+            p = lis.popleft()
+            visit[p] = 1
+            for i in points[p]:
+                if visit[i] == 0 and i not in lis:
+                    lis.append(i)
+
+print(cnt)
+
+
+
+
+# 26번-1260
+def dfs(v):
+    print(v, end=" ")
+    visit1[v] = 1
+    for n in sorted(nums[v]):
+        if visit1[n] == 0:
+            dfs(n)
+
+from collections import deque
+def bfs(v):
+    lis = deque([v])
+    while(lis):
+        p = lis.popleft()
+        print(p, end=" ")
+        visit2[p] = 1
+        for i in sorted(nums[p]):
+            if visit2[i] == 0 and i not in lis:
+                lis.append(i)
+
+
+n,m,v = map(int, input().split())
+nums = [[] for _ in range(n+1)]
+visit1 = [0 for _ in range(n+1)]
+visit2 = [0 for _ in range(n+1)]
+
+
+for _ in range(m):
+    a,b = map(int, input().split())
+    nums[a].append(b)
+    nums[b].append(a)
+
+for i in range(1,n+1):
+    nums[i].sort()
+    
+dfs(v)
+print()
+bfs(v)
+
+
+
 # 29번-1920
 # 36번-1541
 # 37번-1929
