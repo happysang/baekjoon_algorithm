@@ -89,8 +89,7 @@ for t in nums:
 
 
 
-# 23번-11724 푸는중
-
+# 23번-11724
 ### i) dfs로 풀이
 import sys
 sys.setrecursionlimit(10**9)
@@ -190,6 +189,32 @@ bfs(v)
 
 
 # 29번-1920
+n = int(input())
+nums1 = sorted(list(map(int, input().split())))
+
+m = int(input())
+nums2 = list(map(int, input().split()))
+
+
+for num in nums2:
+    flag = True
+    start = 0
+    end = n-1
+    while(start<=end):
+        temp = (start+end)//2
+        if num == nums1[temp]:
+            print(1)
+            flag = False
+            break
+        elif num < nums1[temp]:
+            end = temp-1
+        elif num > nums1[temp]:
+            start = temp+1
+    if flag:
+        print(0)
+        
+        
+        
 # 36번-1541
 # 37번-1929
 # 50번-1717
