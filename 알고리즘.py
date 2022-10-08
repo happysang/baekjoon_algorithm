@@ -216,6 +216,40 @@ for num in nums2:
         
         
 # 36번-1541
+tar = input()
+
+temp = ''
+nums = []
+cal = []
+
+for t in tar:
+    if t.isdigit():
+        temp += t
+    else:
+        nums.append(int(temp))
+        temp = ''
+        cal.append(t)
+nums.append(int(temp))
+
+
+res = nums[0]
+nums = nums[1:]
+pre_mul = '+'
+temp = 0
+for i in range(len(cal)):
+    if pre_mul == '+' and cal[i] == '+':
+        res += nums[i]
+    elif pre_mul == '-' and cal[i] == '+':
+        temp += nums[i]
+    elif pre_mul == '+' and cal[i] == '-':
+        pre_mul = '-'
+        temp += nums[i]
+    elif pre_mul == '-' and cal[i] == '-':
+        res -= temp
+        temp = nums[i]
+print(res-temp)
+
+
 # 37번-1929
 # 50번-1717
 # 54번-1516
