@@ -251,7 +251,24 @@ print(res-temp)
 
 
 # 37번-1929
+n,m = map(int, input().split())
+nums = [1,1]+[0 for _ in range(m-1)]
+
+for i in range(2,m//2+1):
+    temp = i*2
+    if nums[i] == 0:
+        while(temp<=m):
+            nums[temp] = 1
+            temp += i
+            
+for i in range(n,len(nums)):
+    if nums[i] == 0:
+        print(i)
+        
+        
+        
 # 50번-1717
+
 # 54번-1516
 # 56번-1753
 # 58번-1854
