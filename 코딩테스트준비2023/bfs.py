@@ -94,3 +94,31 @@ while(temp):
         temp.append(tar-D)
         
 print("use the stairs")
+
+
+
+### 2178
+from collections import deque
+n,m = map(int, input().split())
+
+dy = [0,1,0,-1]
+dx = [1,0,-1,0]
+nums = []
+for _ in range(n):
+    nums.append(list(map(int, list(input()))))
+    
+for i in range(n):
+    for j in range(m):
+        temp = deque([(i,j)])
+        while(temp): 
+            y,x = temp.popleft()
+            if y == n-1 and x ==m-1:
+                print(nums[y][x])
+                exit()
+            for k in range(4):
+                if 0<=y+dy[k]<n and 0<=x+dx[k]<m and nums[y+dy[k]][x+dx[k]] == 1 and (y+dy[k] != 0 or x+dx[k] != 0):
+                    nums[y+dy[k]][x+dx[k]] = nums[y][x] + 1
+                    temp.append((y+dy[k],x+dx[k]))
+                    
+                    
+                    
