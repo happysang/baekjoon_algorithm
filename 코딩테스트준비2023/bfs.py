@@ -122,3 +122,75 @@ for i in range(n):
                     
                     
                     
+### 1926
+from collections import deque
+n,m = map(int, input().split())
+
+dy = [0,1,0,-1]
+dx = [1,0,-1,0]
+nums = []
+visit = []
+for _ in range(n):
+    nums.append(list(map(int,input().split())))
+    visit.append([0 for _ in range(m)])
+    
+cnt = 0
+m_size = 0
+for i in range(n):
+    for j in range(m):
+        if nums[i][j] == 1 and visit[i][j] == 0:
+            visit[i][j] = 1
+            temp_size = 1
+            cnt += 1
+            temp = deque([(i,j)])
+            
+            while(temp):
+                y,x = temp.popleft()
+                for k in range(4):
+                    if 0<=y+dy[k]<n and 0<=x+dx[k]<m and nums[y+dy[k]][x+dx[k]] == 1 and visit[y+dy[k]][x+dx[k]] == 0:
+                        visit[y+dy[k]][x+dx[k]] = 1
+                        temp_size += 1
+                        temp.append((y+dy[k],x+dx[k]))
+                        
+            m_size = max(m_size, temp_size)
+   
+print(cnt)
+print(m_size)
+
+
+
+### 4963
+from collections import deque
+
+dx = [1,1,1,0,-1,-1,-1,0]
+dy = [1,0,-1,-1,-1,0,1,1]
+
+def bfs(a,b):
+    temp = deque([(a,b)])
+    while(temp):
+        y,x = temp.popleft()
+        for i in range(8):
+            if 0<=y+dy[i]<h and 0<=x+dx[i]<w and m[y+dy[i]][x+dx[i]] == 1 and visit[y+dy[i]][x+dx[i]] == 0:
+                visit[y+dy[i]][x+dx[i]] = 1
+                temp.append((y+dy[i],x+dx[i]))
+    
+while True:
+    w, h = map(int, input().split())
+    if w == 0:
+        exit()
+
+    m = []
+    visit = []
+    for _ in range(h):
+        m.append(list(map(int, input().split())))
+        visit.append([0 for _ in range(w)])
+    
+    cnt = 0
+    for i in range(h):
+        for j in range(w):
+            if m[i][j] == 1 and visit[i][j] == 0:
+                visit[i][j] = 1
+                bfs(i,j)
+                cnt += 1
+    print(cnt)
+        
