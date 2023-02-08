@@ -61,4 +61,33 @@ while True:
                 dfs(i,j)
                 cnt += 1
     print(cnt)
-        
+
+
+### 24479
+import sys
+sys.setrecursionlimit(10**6)
+input = sys.stdin.readline
+
+def dfs(p):
+    global res
+    visit[p] = res
+    res+=1
+    for v in sorted(nums[p]):
+        if visit[v] == 0:
+            dfs(v)
+
+n,e,r = map(int,input().split())
+
+visit = [0 for _ in range(n+1)]
+nums = [ [] for _ in range(n+1) ]
+
+for _ in range(e):
+    a,b = map(int, input().split())
+    nums[a].append(b)
+    nums[b].append(a)
+    
+res = 1
+dfs(r)
+
+for a in visit[1:]:
+    print(a)
