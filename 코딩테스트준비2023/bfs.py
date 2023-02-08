@@ -193,4 +193,67 @@ while True:
                 bfs(i,j)
                 cnt += 1
     print(cnt)
+
+
+
+### 1303
+from collections import deque
+
+dx = [1,0,-1,0]
+dy = [0,-1,0,1]
+
+
+def bfsw(i,j):
+    global wv
+    temp = deque([(i,j)])
+
+    while(temp):
+        y,x = temp.popleft()
         
+        for k in range(4):
+            if 0<=y+dy[k]<m and 0<=x+dx[k]<n and nums[y+dy[k]][x+dx[k]] == 'W' and visit[y+dy[k]][x+dx[k]] == 0:
+                visit[y+dy[k]][x+dx[k]] = 1
+                temp.append((y+dy[k],x+dx[k]))
+                wv += 1
+    
+    
+def bfsb(i,j):
+    global bv
+    temp = deque([(i,j)])
+
+    while(temp):
+        y,x = temp.popleft()
+        
+        for k in range(4):
+            if 0<=y+dy[k]<m and 0<=x+dx[k]<n and nums[y+dy[k]][x+dx[k]] == 'B' and visit[y+dy[k]][x+dx[k]] == 0:
+                visit[y+dy[k]][x+dx[k]] = 1
+                temp.append((y+dy[k],x+dx[k]))
+                bv += 1
+
+
+n,m = map(int, input().split()) #가로높이, 세로높이
+
+nums = []
+visit = []
+for _ in range(m):
+    nums.append(list(input()))
+    visit.append([0 for _ in range(n)])
+    
+resw = []
+resb = []
+for i in range(m):
+    for j in range(n):
+        if nums[i][j] == 'W' and visit[i][j] == 0:
+            wv = 1
+            visit[i][j] = 1
+            bfsw(i,j)
+            resw.append(wv ** 2)
+            
+        if nums[i][j] == 'B' and visit[i][j] == 0:
+            bv = 1
+            visit[i][j] = 1
+            bfsb(i,j)
+            resb.append(bv ** 2)
+            
+            
+print(sum(resw),sum(resb))
