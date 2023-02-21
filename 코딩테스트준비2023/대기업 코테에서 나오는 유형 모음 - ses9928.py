@@ -246,3 +246,142 @@ while(True):
             continue
         
     print(f'<{tar}> is acceptable.')
+    
+    
+### 25737
+import sys
+input = sys.stdin.readline
+
+from itertools import combinations
+
+n, t = input().split()
+n = int(n)
+temp = set()
+for _ in range(n):
+    temp.add(input())
+
+if t == "Y":
+    print(len(temp))
+elif t == "F":
+    print( len(temp)//2 ) 
+else:
+    print( len(temp)//3 )
+    
+    
+    
+### 1205
+n, point, p = map(int, input().split())
+# 점수 갯수, 태수의 점수, 랭킹 리스트에 올라 갈 수 있는 점수의 개수
+
+if n == 0:
+    print(1)
+else:
+    nums = list(map(int,input().split()))
+    nums.append(point)
+    nums.sort(reverse=True)
+
+    res = [0 for _ in range(len(nums))]
+    res[0] = 1
+
+    temp = 0
+    for i in range(1,len(nums)):
+        if nums[i-1] == nums[i]:
+            res[i] = res[i-1]
+            temp += 1
+        else:
+            res[i] = res[i-1]+temp+1
+            temp = 0
+    # print(res)
+    
+    if (n==p and nums[p-1] > point) or (n==p and nums[p-1] == point and res[p-1] == res[p]):
+        print(-1)
+    else:
+        print(res[nums.index(point)])
+        
+        
+### 1244
+n = int(input())
+res = [-1]+list(map(int, input().split()))
+
+for _ in range(int(input())):
+    g, tar = map(int, input().split())
+        
+    if g == 1:
+        temp = tar
+        while(temp<=n):
+            if res[temp]:
+                res[temp] = 0
+            else:
+                res[temp] = 1
+            temp += tar
+    else:
+        flag = 0
+        while(1<=tar-flag and tar+flag<=n):
+            if res[tar-flag] == res[tar+flag]:
+                if res[tar-flag]:
+                    res[tar-flag],res[tar+flag] = 0,0
+                else:
+                    res[tar-flag],res[tar+flag] = 1,1
+            else:
+                break
+            
+            flag += 1
+
+if n<=20:
+    print(*res[1:])
+    
+elif n<=40:
+    print(*res[1:21])
+    print(*res[21:])
+
+elif n<=60:
+    print(*res[1:21])
+    print(*res[21:41])
+    print(*res[41:])
+    
+elif n<=80:
+    print(*res[1:21])
+    print(*res[21:41])
+    print(*res[41:61])
+    print(*res[61:])
+    
+else:
+    print(*res[1:21])
+    print(*res[21:41])
+    print(*res[41:61])
+    print(*res[61:81])
+    print(*res[81:])
+    
+    
+    
+### 9017
+from collections import defaultdict
+
+T = int(input())
+
+for _ in range(T):
+    n = int(input())
+    nums = list(map(int, input().split()))
+    temp = sorted(list(set(nums)))
+    
+    ap = []
+    for t in temp:
+        if nums.count(t) >= 6:
+            ap.append(t)
+            
+    tar = []
+    for v in nums:
+        if v in ap:
+            tar.append(v)
+    
+    res = defaultdict(list)
+    for i in range(len(tar)):
+        if len(res[tar[i]]) <= 4:
+            res[tar[i]].append(i+1)
+            
+    ans = []
+    for k,v in res.items():
+        ans.append([k,sum(v[:4]),v[4]])
+    ans.sort(key=lambda x:(x[1],x[2]))
+    
+    print(ans[0][0])
